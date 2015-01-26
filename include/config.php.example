@@ -1,0 +1,34 @@
+<!--
+
+ J-Tracker
+ file: config.php
+ purpose: configuration file duh..
+
+--!>
+<?php
+
+# Is J-Tracker Installed?
+#define("installed", true);
+
+# SQL Setftings
+define("dbhost", "");
+define("dbuser", "");
+define("dbpass", "");
+define("dbname", "");
+define("db_prefix", "");
+
+# Site Security
+define("http_protocol", "http"); # Change to 'https' for SSL - Requires SSL Cert.
+
+# Site Settings
+define("site_logo", ""); //Displayed on top of site
+define("site_name", "J-Tracker"); //Displayed on top of site
+
+# Registration Settings
+define("avatars", true); //Allow users to set a avatar.
+define("avatars_dir", ""); //Save avatars here if $avatars is enabled
+
+# Localization
+define("lang", "en");
+
+?>
