@@ -10,6 +10,11 @@ font-size: 12px;
 width: 400px;
 }
 
+.authboxes
+{
+width: 100px;
+}
+
 a
 {
 font-family: Helvetica;
@@ -41,6 +46,39 @@ position: relative;
 width: 50%;
 height: 450px;
 background: #F6F1EE;
+}
+
+.legalpage
+{
+background: #F6F1EE;
+font-family: Helvetica;
+font-size: 12px;
+width: 600px;
+height: 125px;
+border-radius: 8px 8px 8px 8px;
+-webkit-box-shadow: 0px 0px 11px 0px rgba(50, 50, 50, 0.75);
+-moz-box-shadow:    0px 0px 11px 0px rgba(50, 50, 50, 0.75);
+box-shadow:         0px 0px 11px 0px rgba(50, 50, 50, 0.75)
+margin: 2px 2px 2px 2px;
+word-break: normal | break-all | keep-all;
+}
+
+.loginbox
+{
+background: #F6F1EE;
+font-family: Helvetica;
+width: 250px;
+height: 225px;
+border-radius: 8px 8px 8px 8px;
+}
+
+.registerbox
+{
+background: #F6F1EE;
+font-family: Helvetica;
+width: 250px;
+height: 270px;
+border-radius: 8px 8px 8px 8px;
 }
 .torrentdescription
 {
