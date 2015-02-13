@@ -7,8 +7,9 @@ J-Tracker does not rely on other sites and/or databases. It purely uses it's own
 # Features
 - Search Engine
 - Search by Title/Description/User/Category
-- Authentication System (Login/Register)
+- Authentication System (Login/Register) ([Thanks PHP-Login.net](http://www.php-login.net)
 - Comments on each torrent
+- Magnet Link Lib ([Thanks adriengibrat](http://www.github.com/adriengibrat)
 - Easy Installer
 
 # Installation
@@ -18,4 +19,7 @@ J-Tracker does not rely on other sites and/or databases. It purely uses it's own
 4. Done
 
 # Is this script finished?
-No, but there's very little content left to be added, such as login/registration/comments
+No. The ability to post comments, and upload torrents, still needs to be done.
+
+# Is there a demo?
+Of course. You can view a demo of J-Tracker [HERE](http://www.j0rpi.net/torrenttracker)
