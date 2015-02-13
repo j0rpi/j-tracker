@@ -19,7 +19,7 @@ J-Tracker does not rely on other sites and/or databases. It purely uses it's own
 4. Done
 
 # Is this script finished?
-No. The ability to post comments, and upload torrents, still needs to be done.
+No. The ability to post comments, upload torrents, display magnet link info on torrent page, and user control panel, still needs to be done.
 
 # Is there a demo?
 Of course. You can view a demo of J-Tracker [HERE](http://www.j0rpi.net/torrenttracker)
