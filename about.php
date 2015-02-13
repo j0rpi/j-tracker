@@ -1,8 +1,8 @@
 <!--
 
  J-Tracker
- file: legal.php
- purpose: displays legal information about j-tracker and how i'm not guilty of what's displayed on the site as a whole
+ file: about.php
+ purpose: it's what you think it is..
 
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -37,10 +37,10 @@ include('include/config.php');
 					<center>
 					<div class='legalpage'>
 				<br />
-				This site is powered by the free and legal software <b>J-Tracker</b><br /><br />
-				This software does not try to create the possibility of sharing copyrighted files.<br />
-				It is designed to make it easy to share legal and non-copyrighted material between private individuals.<br /><br />
-				Should copyrighted material be available on the site running <b>J-Tracker</b><br />you should contact the owner of the site, and not the developer. 
+				This site is powered by the free and legal software <b><a href="https://github.com/j0rpi/j-tracker">J-Tracker</b></a><br /><br />
+				<br />
+				torrent-rw by <a href="https://github.com/adriengibrat"><b>adriengibrat</b></a><br />
+				php-login by <a href="http://www.php-login.net"><b>The PHP-Login Project</b></a><br />
 				<br />
                     
 </div>

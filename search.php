@@ -11,9 +11,6 @@
 <?php
 include('include/config.php');
 
-    mysql_connect(dbhost, dbuser, dbpass) or die("Error connecting to database: ".mysql_error());
-    mysql_select_db(dbname) or die(mysql_error());
-
 ?>
 
 <head>
@@ -22,10 +19,20 @@ include('include/config.php');
     <link rel="stylesheet" type="text/css" href="skin/default/style.css"/>
 </head>
 <body>
+<div class="topbar">
+<form action="search.php" id="search" method="get">
+<a href="index.php" class="a" style="float: left; border-bottom: 0px solid lol;"><img src="skin/default/img/logo.png" width="64" height="64" id="" alt="" class="topbar-logo"></a><br />
+<a href="index.php" title="Search Torrents">Search Torrents</a>&nbsp;&nbsp;|&nbsp;
+<a href="browse.php" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+<a href="#" title="Recent Torrent">Recent Torrents</a>
+<br><br><input type="search" class="search" required="" name="query" value=""> <input value="Search" type="submit" class="submitbutton"><br>
+<input type="hidden" name="page" value="0">
+<input type="hidden" name="orderby" value="99">
+</form>
+</div>
 <?php
 echo "
 <center>
-<font style='font-size: 18px; font-family: Arial;'><img src='skin/default/" . site_logo . "'/><br><b>". site_name . "</b></font><br>
 <br>
 <br>
 <div class='torrenttable' >
@@ -85,8 +92,20 @@ echo "
         }
         else{ 
             ob_end_clean();
-			echo '<link rel="stylesheet" type="text/css" href="skin/default/style.css"/>';
-        echo "<font style='font-size: 18px; font-family: Arial;'><center><font style='font-size: 18px; font-family: Arial;'><img src='skin/default/" . site_logo . "'/><br><b>". site_name . "</b></font><br>";
+		echo '<link rel="stylesheet" type="text/css" href="skin/default/style.css"/>';
+        echo "<div class='topbar'>
+              <form action='search.php' id='search' method='get'>
+			  <font style='font-size: 18px; font-family: Arial;'>
+              <a href='index.php' class='a' style='float: left; border-bottom: 0px solid lol;'><img src='skin/default/img/logo.png' width='64' height='64' id='' alt='' class='topbar-logo'></a><br />
+              <a href='index.php' title='Search Torrents'>Search Torrents</a>&nbsp;&nbsp;|&nbsp;
+              <a href='browse.php' title='Browse Torrents'>Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+              <a href='#' title='Recent Torrent'>Recent Torrents</a>
+              <br><br><input type='search' class='search' title='Pirate Search' name='query' value=''> <input value='Search' type='submit' class='submitbutton'><br>
+              <input type='hidden' name='page' value='0'>
+              <input type='hidden' name='orderby' value='99'>
+              </form>
+              </div>
+			  ";
 		echo "<br>No results returned for keyword '". $query . "'</font>";
         }
          
@@ -94,8 +113,20 @@ echo "
     else{ 
         ob_end_clean();
 		echo '<link rel="stylesheet" type="text/css" href="skin/default/style.css"/>';
-        echo "<font style='font-size: 18px; font-family: Arial;'><center><font style='font-size: 18px; font-family: Arial;'><img src='skin/default/" . site_logo . "'/><br><b>". site_name . "</b></font><br>";
-		echo "<br>Please supply a keyword that's at least ".$min_length." characters long.</font>";
+        echo "<div class='topbar'>
+              <form action='search.php' id='search' method='get'>
+			  <font style='font-size: 18px; font-family: Arial;'>
+              <a href='index.php' class='a' style='float: left; border-bottom: 0px solid lol;'><img src='skin/default/img/logo.png' width='64' height='64' id='' alt='' class='topbar-logo'></a><br />
+              <a href='index.php' title='Search Torrents'>Search Torrents</a>&nbsp;&nbsp;|&nbsp;
+              <a href='browse.php' title='Browse Torrents'>Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+              <a href='#' title='Recent Torrent'>Recent Torrents</a>
+              <br><br><input type='search' class='search' title='Pirate Search' name='query' value=''> <input value='Search' type='submit' class='submitbutton'><br>
+              <input type='hidden' name='page' value='0'>
+              <input type='hidden' name='orderby' value='99'>
+              </form>
+              </div>
+			  ";
+		echo "<br>Please supply a keyword that's at least ".$min_length." characters long, or try to broaden your keyword.</font>";
     }
 ?>
 

@@ -9,38 +9,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<form action="" id="login" method="get">
 <?php
-include('include/config.php');
+require_once('include/config.php');
+require_once("classes/Login.php");
 ?>
 
-<?php
-echo "<title>" . site_name . "</title>"
-?>
 
-<?php
-
-if( defined("installed") )
-{
-echo "
 <head>
 <link rel='stylesheet' type='text/css' href='skin/default/style.css'>
 </head>
 <body>
-<center>
-<font style='font-size: 18px; font-family: Arial;'><img src='skin/default/" . site_logo . "'/><br><b>". site_name . "</b></font><br>
-<br>
-<div class='loginbox'>
-<br /><br />
-  <font style='font-family: Helvetica'>Username<br>
-  <input type='text' class='authboxes' name='user' width='100' disabled=''><br /><br />
-  Password<br>
-  <input type='text' class='authboxes' name='pass' width='100' disabled=''><br /><br />
-  <input type='submit' width='600' value='Login' disabled=''></font><br>
-  <br />
-  <font style='font-size: 10px; color: maroon'>Login Has Been Disabled</font>
-</div>
+<div class='topbar'>
+<form action='search.php' id='search' method='get'>
+<a href='index.php' class='a' style='float: left; border-bottom: 0px solid lol;'><img src='skin/default/img/logo.png' width='64' height='64' id='' alt='' class='topbar-logo'></a><br />
+<a href='index.php' title='Search Torrents'>Search Torrents</a>&nbsp;&nbsp;|&nbsp;
+<a href='browse.php' title='Browse Torrents'>Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+<a href='#' title='Recent Torrent'>Recent Torrents</a>
+<br><br><input type='search' class='search' required='' name='query' value=''> <input value='Search' type='submit' class='submitbutton'><br>
+<input type='hidden' name='page' value='0'>
+<input type='hidden' name='orderby' value='99'>
 </form>
+</div>
+<center>
+<br>
+<?php
+$login = new Login();
+
+if ($login->isUserLoggedIn() == true) 
+{
+
+	echo "<div class='loginbox'>You are already logged in as: <b>" . $_SESSION['user_name'] . "</b>!</div>";
+}
+else
+{
+include("views/not_logged_in.php");
+}
+?>
+
 <br>
 <nav>
 <a href='login.php'>Login</a> |
@@ -61,10 +66,4 @@ echo "
 <br>
 <a href='http://www.kopimi.com/kopimi/' class='torrentlinks'><img src='skin/default/img/kopimi.gif'/></a>
 </center>
-</body>";
-}
-else
-{
-	die('J-Tracker has not been installed. Please click <a href="install/index.php">HERE</a> to install.');
-}
-?>
+</body>

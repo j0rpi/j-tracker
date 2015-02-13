@@ -15,10 +15,17 @@ define('dbname', 'jtracker');
 
 # Site Settings
 define('site_logo', '/img/logo.png');
-define('site_name', '');
+define('site_name', 'J-Tracker');
 
-# USer Settings
+# User Settings
 define('avatars_dir', '/files/avatars');
+
 # Localization
 define('lang', 'en');
+
+# Connect to Database
+mysql_connect(dbhost, dbuser, dbpass) or die("Error connecting to database: ".mysql_error());
+mysql_select_db(dbname) or die(mysql_error());
+
+
 ?>

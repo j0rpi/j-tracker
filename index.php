@@ -12,6 +12,9 @@
 <form action="search.php" id="search" method="get">
 <?php
 include('include/config.php');
+include('classes/login.php');
+
+$login = new Login();
 ?>
 
 <?php
@@ -30,12 +33,12 @@ echo "
 <center>
 <font style='font-size: 18px; font-family: Arial;'><img src='skin/default/" . site_logo . "'/><br><b>". site_name . "</b></font><br>
 <nav>
-<a href='#'>Browse Torrents</a> |
+<a href='browse.php'>Browse Torrents</a> |
 <a href='#'>Recent Torrents</a> |
 <a href='#'>Torrents Hall of Fame</a> 
 </nav>
 <br>
-  <input type='text' class='search' name='query' width='900'><br>
+  <input type='text' required='' class='search' name='query' width='900'><br>
   <p class='cats'>
             <label title='All' accesskey='a'><input id='all' type='checkbox' checked='true'>All</label>
             <label title='Audio' accesskey='q'><input name='audio' id='audio' type='checkbox'>Audio</label>
@@ -48,9 +51,20 @@ echo "
   <input type='submit' width='600' value='Search For Torrents'><br>
 </form>
 <br>
-<nav>
-<a href='login.php'>Login</a> |
-<a href='register.php'>Register</a> |
+<nav>";
+
+if ($login->isUserLoggedIn() == true)
+{
+echo "<a href='#'>Logged in as <b>" . $_SESSION['user_name'] . "</b></a> <b><a href='index.php?logout'>[LOGOUT]</a></b> |";
+}
+else
+{
+echo "<a href='login.php'>Login</a> |
+      <a href='register.php'> Register</a> |";
+      
+}
+
+echo "
 <a href='upload.php'>Upload Torrent</a> |
 <a href='my.php'>UCP</a> |
 <a href='/blog/'>Blog</a> |
@@ -60,7 +74,7 @@ echo "
 </nav>
 <br>
 <br>
-<span class='footertext'>Site Powered by <a href='http://www.github.com/j0rpi/j-tracker'>J-Tracker v0.1</a><br></span>
+<span class='footertext'>Site Powered by <a href='http://www.github.com/j0rpi/j-tracker'>J-Tracker v0.3</a><br></span>
 <br>
 <br>
 <br>

@@ -12,14 +12,14 @@
 include('include/config.php');
 include('include/pData.class');  
 include('include/pChart.class');
+mysql_connect(dbhost, dbuser, dbpass) or die("Error connecting to database: ".mysql_error());
+mysql_select_db(dbname) or die(mysql_error());
 
-    mysql_connect(dbhost, dbuser, dbpass) or die("Error connecting to database: ".mysql_error());
-    mysql_select_db(dbname) or die(mysql_error());
 
 ?>
 
 <head>
-    <title>Statistics of <?php echo site_name ?></title>
+    <title><?php echo site_name ?> - Statistics</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="skin/default/style.css"/>
 </head>

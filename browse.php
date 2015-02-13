@@ -1,8 +1,8 @@
 <!--
 
  J-Tracker
- file: user.php
- purpose: user page
+ file: browse.php
+ purpose: shows all torrents ever uploaded
 
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -10,28 +10,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
 include('include/config.php');
-mysql_connect(dbhost, dbuser, dbpass) or die("Error connecting to database: ".mysql_error());
-mysql_select_db(dbname) or die(mysql_error());
-
-
 ?>
 
 <head>
-    <title><?php echo site_name . " - User Details"; ?></title>
+    <title><?php echo site_name . " - Browsing Torrents "; ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="skin/default/style.css"/>
 </head>
 <body>
+<div class="topbar">
+<form action="search.php" id="search" method="get">
+<a href="index.php" class="a" style="float: left; border-bottom: 0px solid lol;"><img src="skin/default/img/logo.png" width="64" height="64" id="" alt="" class="topbar-logo"></a><br />
+<a href="index.php" title="Search Torrents">Search Torrents</a>&nbsp;&nbsp;|&nbsp;
+<a href="browse.php" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+<a href="#" title="Recent Torrent">Recent Torrents</a>
+<br><br><input type="search" class="search" required="" name="query" value=""> <input value="Search" type="submit" class="submitbutton"><br>
+<input type="hidden" name="page" value="0">
+<input type="hidden" name="orderby" value="99">
+</form>
+</div>
 <?php
 echo "
 <center>
-<font style='font-size: 18px; font-family: Arial;'><img src='skin/default/" . site_logo . "'/><br><b>". site_name . "</b></font><br>
 <br>
 <br>
 <div class='torrenttable' >
-<center>
-<span style='font-family: Helvetica; font-size: 24px'>Search Result For User <b>" .htmlspecialchars($_GET['id']). "</b></span><br><br>
-<center>
 <table >
 <tr>
                         <td>
@@ -48,12 +51,12 @@ echo "
                         </td>
                     </tr>
 ";
-     
-
-$query = mysql_query("SELECT * FROM torrents WHERE uploader='".htmlspecialchars($_GET['id'])."'")
-or die(mysql_error()); 
+  
+         
+        $raw_results = mysql_query("SELECT * FROM torrents") or die(mysql_error());
+         
              
-            while($results = mysql_fetch_array($query)){
+            while($results = mysql_fetch_array($raw_results)){
                 echo 
 				"
                         <td>
@@ -70,7 +73,9 @@ or die(mysql_error());
                         </td>
                     </tr>
 				
-				";   
+				";
+				
+                
             }
 ?>
 
