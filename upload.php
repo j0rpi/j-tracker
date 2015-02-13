@@ -112,7 +112,7 @@ echo "
 </nav>
 <br>
 <br>
-<span class='footertext'>Site Powered by <a href='http://www.github.com/j0rpi/j-tracker'>J-Tracker v0.1</a><br></span>
+<span class='footertext'>Site Powered by <a href='http://www.github.com/j0rpi/j-tracker'>J-Tracker v0.3</a><br></span>
 <br>
 <br>
 <br>
