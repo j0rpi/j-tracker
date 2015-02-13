@@ -7,9 +7,9 @@ J-Tracker does not rely on other sites and/or databases. It purely uses it's own
 # Features
 - Search Engine
 - Search by Title/Description/User/Category
-- Authentication System (Login/Register) ([Thanks PHP-Login.net](http://www.php-login.net)
+- Authentication System (Login/Register) ([Thanks PHP-Login.net](http://www.php-login.net))
 - Comments on each torrent
-- Magnet Link Lib ([Thanks adriengibrat](http://www.github.com/adriengibrat)
+- Magnet Link Lib ([Thanks adriengibrat](http://www.github.com/adriengibrat))
 - Easy Installer
 
 # Installation
