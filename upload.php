@@ -93,7 +93,7 @@ echo "
 <nav>";
 if ($login->isUserLoggedIn() == true)
 {
-echo "<a href='#'>Logged in as <b>" . $_SESSION['user_name'] . "</b></a> <b><a href='index.php?logout'>[LOGOUT]</a></b> |";
+echo "Logged in as <b>" . $_SESSION['user_name'] . "</b> <b><a href='index.php?logout'>[LOGOUT]</a></b> |";
 }
 else
 {

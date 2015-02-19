@@ -22,8 +22,10 @@
 <?php
 include('include/config.php');
 include('classes/login.php');
+include('classes/Registration.php');
 
 $login = new Login();
+$register = new Registration();
 ?>
 
 <head>
@@ -40,7 +42,7 @@ echo "
 <div class='torrenttable' >
 ";
      
-
+	 
 $query = mysql_query("SELECT * FROM torrents WHERE id='".htmlspecialchars($_GET['id'])."'")
 or die("Database is currently AFK, it'll be back shortly."); 
              
@@ -103,6 +105,23 @@ echo "<div class='commentpagebg'><font style='font-size: 24px; font-family: Helv
 		echo "<font style='font-size: 16px; font-family: Helvetica; padding-top: 0px; padding-left: 10px; '>- No Comments For This Torrent -</font>";
 	   }
 	   echo "</div>";
+
+	   
+if ($login->isUserLoggedIn() == true)
+{
+	echo "
+	
+	<div class='commentbox'><br>
+	Write New Comment
+<form method='post' action='torrent.php?id=" . htmlspecialchars($_GET['id']) . "' name='write_comment'>
+	<textarea name='comment_text' style='width: 925px; height: 100px'></textarea><br><br>
+	<input type='hidden' name='torrent_id' value='" . htmlspecialchars($_GET['id']) . "' style='width: 0px; height: 0px;' />
+	<input type='submit' name='addcomment' value='Add Comment'>
+	</form><br>";
+}
+else
+{
+}
 ?>
 
 

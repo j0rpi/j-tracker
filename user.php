@@ -10,10 +10,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
 include('include/config.php');
-mysql_connect(dbhost, dbuser, dbpass) or die("Error connecting to database: ".mysql_error());
-mysql_select_db(dbname) or die(mysql_error());
-
-
 ?>
 
 <head>

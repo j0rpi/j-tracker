@@ -16,7 +16,7 @@ if (isset($login)) {
 
 <!-- login form box -->
 
-<form method="post" action="index.php" name="loginform">
+<form method="post" action="login.php" name="loginform">
 <div class='loginbox'>
     <br />
 	<br />

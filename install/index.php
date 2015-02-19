@@ -9,6 +9,9 @@
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <?php
 include('../include/config.php');
+include('../classes/Registration.php');
+$register = new Registration();
+
 if( defined("installed") )
 {
 	die("J-Tracker is already istalled. Click <a href='../index.php'>here to return to main site.</a>");
@@ -97,15 +100,19 @@ echo "
 <table class='tg'>
   <tr>
     <th class='tg-031e'>Admin Username</th>
-    <th class='tg-031e'><input name='admin_username' type='text'></th>
+    <th class='tg-031e'><input name='user_name' type='text'></th>
   </tr>
   <tr>
     <td class='tg-031e'>Admin Password</td>
-    <td class='tg-031e'><input name='admin_password' type='text'></td>
+    <td class='tg-031e'><input name='user_password_new' type='text' pattern='.{6,}' required autocomplete='off'></td>
+  </tr>
+  <tr>
+    <td class='tg-031e'>Confirm Password</td>
+    <td class='tg-031e'><input name='user_password_repeat' type='text' pattern='.{6,}' required autocomplete='off'></td>
   </tr>
   <tr>
     <td class='tg-031e'>Admin Email</td>
-    <td class='tg-031e'><input name='admin_email' type='text'></td>
+    <td class='tg-031e'><input name='user_email' type='text'></td>
   </tr>
 </table>
 <br>
@@ -122,8 +129,14 @@ if (isset ($_POST['install']))
 {
    if ( $_POST['install'] || $_GET['install'] )
    {
+	   
+	   // Write config file
 	   config();
-	   database();
+	   
+	   // Create SysOp account
+	   createSysOp();
+	   
+	   // Finally redirect to main page.
 	   redirect();
    }
    else
@@ -162,12 +175,14 @@ function config()
 	$config_content .= "define('avatars_dir', '" . $_POST['avatar_path'] . "');\n";
 	$config_content .= "# Localization\n";
     $config_content .= "define('lang', '" . $_POST['lang'] . "');\n";
+	$config_content .= "mysql_connect(dbhost, dbuser, dbpass) or die('Error connecting to database: '.mysql_error());";
+	$config_content .= "mysql_select_db(dbname) or die(mysql_error());";
 	$config_content .= "?>";
 	
 	file_put_contents($file, $config_content);
 }
 
-function database()
+function createSysOp()
 {
 	$conn = new mysqli($_POST['dbhost'], $_POST['dbuser'], $_POST['dbpass'], $_POST['dbname']);
 	if ($conn->connect_error) 
@@ -175,7 +190,7 @@ function database()
 		die("<b>Installation has failed!</b>\n\nCould not connect and populate the database with data.\nPlease check your configuration.");
 	}
 	
-$sql = "INSERT INTO users (username, password, email, level) VALUES ('". $_POST['admin_username'] ."', '" . md5($_POST['admin_password']) . "', '" . $_POST['admin_email'] . "', '10')";
+$sql = "INSERT INTO users (user_name, user_password_hash, user_email, user_avatar, user_level) VALUES ('" . $_POST['user_name'] ."', '" . password_hash($_POST['user_password_repeat'], PASSWORD_DEFAULT) . "', '" . $_POST['user_email'] . "', 'http://we3cares.com/Images/User-64x64.jpg',  '10')";
     if ($conn->query($sql) === TRUE) 
 	{
        

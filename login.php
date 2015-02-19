@@ -38,7 +38,7 @@ $login = new Login();
 if ($login->isUserLoggedIn() == true) 
 {
 
-	echo "<div class='loginbox'>You are already logged in as: <b>" . $_SESSION['user_name'] . "</b>!</div>";
+	echo "You are logged in as: <b>" . $_SESSION['user_name'] . "</b><br /><br/><a href='index.php'>Return To Main Site.</a><br /><br />";
 }
 else
 {

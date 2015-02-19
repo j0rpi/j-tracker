@@ -12,10 +12,6 @@
 include('include/config.php');
 include('include/pData.class');  
 include('include/pChart.class');
-mysql_connect(dbhost, dbuser, dbpass) or die("Error connecting to database: ".mysql_error());
-mysql_select_db(dbname) or die(mysql_error());
-
-
 ?>
 
 <head>

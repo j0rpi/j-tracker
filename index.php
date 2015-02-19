@@ -12,14 +12,25 @@
 <form action="search.php" id="search" method="get">
 <?php
 include('include/config.php');
-include('classes/login.php');
+include('classes/Login.php');
 
 $login = new Login();
+
+if (isset($login)) {
+    if ($login->errors) {
+        foreach ($login->errors as $error) {
+            echo $error;
+        }
+    }
+    if ($login->messages) {
+        foreach ($login->messages as $message) {
+            echo $message;
+        }
+    }
+}
 ?>
 
-<?php
-echo "<title>" . site_name . "</title>"
-?>
+
 
 <?php
 
@@ -27,6 +38,7 @@ if( defined("installed") )
 {
 echo "
 <head>
+<title>" . site_name . "</title>
 <link rel='stylesheet' type='text/css' href='skin/default/style.css'>
 </head>
 <body>
@@ -55,7 +67,7 @@ echo "
 
 if ($login->isUserLoggedIn() == true)
 {
-echo "<a href='#'>Logged in as <b>" . $_SESSION['user_name'] . "</b></a> <b><a href='index.php?logout'>[LOGOUT]</a></b> |";
+echo "Logged in as <b>" . $_SESSION['user_name'] . "</b> <b><a href='index.php?logout'>[LOGOUT]</a></b> |";
 }
 else
 {

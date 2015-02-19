@@ -13,6 +13,9 @@
 require_once("include/config.php");
 require_once("classes/Registration.php");
 require_once("classes/Login.php");
+
+$registration = new Registration();
+$login = new Login();
 ?>
 
 <?php
@@ -51,16 +54,13 @@ if (isset($registration)) {
         }
     }
 }
-
-$registration = new Registration();
-$login = new Login();
 ?>
 <center>
 <br>
 <?php
 if ($login->isUserLoggedIn() == true)
 {
-  echo "You are already logged in as <b>" . $_SESSION['user_name'] . "</b> - You can logout by clicking <a href='index.php?logout'>HERE</a>";
+  echo "You are already logged in as <b>" . $_SESSION['user_name'] . "<br /></b>You can logout by clicking <a href='index.php?logout'>HERE</a> or <a href='index.php'>RETURN TO MAIN PAGE</a><br /><br />";
 }
 else
 {
