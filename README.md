@@ -7,19 +7,16 @@ J-Tracker does not rely on other sites and/or databases. It purely uses it's own
 # Features
 - Search Engine
 - Search by Title/Description/User/Category
-- Authentication System (Login/Register) ([Thanks PHP-Login.net](http://www.php-login.net))
+- Authentication System (Login/Register)
 - Comments on each torrent
-- Magnet Link Lib ([Thanks adriengibrat](http://www.github.com/adriengibrat))
 - Easy Installer
 
 # Installation
 1. Upload 'j-tracker' folder to your FTP
-2. Browse to the installation path (www.domain.com/jtracker/install) and follow instructions OR edit include/config.php.example manually and rename to 'config.php'
-3. Go back to www.domain.com/jtracker
-4. Done
+2. Import 'DATABASE.sql' to a MySQL database
+3. Browse to the installation path (www.domain.com/jtracker/install)
+4. Go back to www.domain.com/jtracker
+5. Done
 
 # Is this script finished?
-No. The ability to post comments, upload torrents, display magnet link info on torrent page, and user control panel, still needs to be done.
-
-# Is there a demo?
-Of course. You can view a demo of J-Tracker [HERE](http://www.j0rpi.net/torrenttracker)
+No. Only thing left is .torrent file translations (using torrent-rw, located in include/torrent.php) aswell as the ability to upload torrents. Rest is done.
