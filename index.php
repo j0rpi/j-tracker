@@ -45,7 +45,7 @@ echo "
 <center>
 <font style='font-size: 18px; font-family: Arial;'><img src='skin/default/" . site_logo . "'/><br><b>". site_name . "</b></font><br>
 <nav>
-<a href='browse.php'>Browse Torrents</a> |
+<a href='browse.php?p=0'>Browse Torrents</a> |
 <a href='#'>Recent Torrents</a> |
 <a href='#'>Torrents Hall of Fame</a> 
 </nav>

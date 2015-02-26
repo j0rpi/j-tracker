@@ -1,0 +1,29 @@
+/* ATTRIBUTES FOR THE CONTAINER (THIS HOW WE CENTER EVERYTHING)
+----------------------------------------------------------------------------------------------------------------------*/
+.Zebra_Pagination                       { clear: both; width: 100%; overflow: hidden; }
+.Zebra_Pagination ul                    { position: relative; left: 50%; list-style-type: none; margin: 0; padding: 0; float: left }
+.Zebra_Pagination li                    { position: relative; float: left; right: 50% }
+
+/* COMMON ATTRIBUTES FOR ALL THE LINKS
+----------------------------------------------------------------------------------------------------------------------*/
+.Zebra_Pagination a                     { color: darkblue; border-bottom: 0px solid black; font-family: Helvetica; padding: 4px ; text-decoration: none; margin: 0 2px; display: block; float: left; }
+.Zebra_Pagination a:hover               { color: #222; text-decoration: underline; }
+
+/* "NEXT PAGE" AND "PREVIOUS PAGE" LINKS
+----------------------------------------------------------------------------------------------------------------------*/
+.Zebra_Pagination a.navigation          {  overflow: hidden;  }
+.Zebra_Pagination a.previous            { background-image: url(larrow.png); background-position: left center; padding-left: 25px }
+.Zebra_Pagination a.next                { background-image: url(rarrow.png); background-position: right center; padding-right: 25px }
+.Zebra_Pagination a.disabled            { filter: alpha(opacity=0); -khtml-opacity: 0.0; -moz-opacity: 0.0; opacity: 0.0 }
+.Zebra_Pagination a.disabled:hover      { color: inherit }
+
+
+
+/* CURRENT PAGE
+----------------------------------------------------------------------------------------------------------------------*/
+.Zebra_Pagination a.current,
+.Zebra_Pagination a.current:hover       { font-weight: bold; border-color: #0094D6; color: black }
+
+/* THE "..." SEPARATOR
+----------------------------------------------------------------------------------------------------------------------*/
+.Zebra_Pagination span                  { color: #666; margin-right: 2px; display: block; float: left; padding: 8px 4px }

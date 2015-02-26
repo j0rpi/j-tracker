@@ -29,6 +29,8 @@ CREATE TABLE `comments` (
 
 /*Data for the table `comments` */
 
+insert  into `comments`(`id`,`text`,`user`,`time`) values ('1','While we\'re at it. Here\'s an example comment! :) Please note that comments also can be removed just as easy as you can delete torrents from the database.','J-Tracker','[Test Comment]');
+
 /*Table structure for table `torrents` */
 
 DROP TABLE IF EXISTS `torrents`;
@@ -37,13 +39,16 @@ CREATE TABLE `torrents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cat` varchar(255) DEFAULT NULL,
   `uploader` varchar(255) DEFAULT NULL,
-  `description` tinytext,
+  `description` text,
   `link` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
+  `date` tinytext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=169 DEFAULT CHARSET=latin1;
 
 /*Data for the table `torrents` */
+
+insert  into `torrents`(`id`,`cat`,`uploader`,`description`,`link`,`title`,`date`) values (1,'None','J-Tracker','======================\r\n      j-tracker\r\n======================\r\n\r\nSeeing this torrent means that the \r\ninstallation was successfull. \r\n\r\nYou may delete this torrent manually\r\nby removing the row in the database.\r\n\r\n\r\nThis torrent let\'s you download latest\r\nUbuntu 14.10 64bit ISO. Just for a simple\r\nshowcase for how stuff is working! :)\r\n\r\nHappy sharing! :)','torrents/ubuntu-14.10-desktop-amd64.iso.torrent','J-Tracker Installed Successfully!','[Test Torrent]');
 
 /*Table structure for table `users` */
 
@@ -59,7 +64,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
   UNIQUE KEY `user_email` (`user_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `users` */
 

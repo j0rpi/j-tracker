@@ -731,7 +731,7 @@ class Torrent {
 	 * @return string formated size in appropriate unit
 	 */
 	static public function format ( $size, $precision = 2 ) {
-		$units = array ('octets', 'Ko', 'Mo', 'Go', 'To');
+		$units = array ('B', 'KiB', 'MiB', 'GiB', 'TiB');
 		while( ( $next = next( $units ) ) && $size > 1024 )
 			$size /= 1024;
 		return round( $size, $precision ) . ' ' . ( $next ? prev( $units ) : end( $units ) );

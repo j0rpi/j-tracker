@@ -21,6 +21,13 @@ border-radius: 32px 32px 32px 32px;
 border: 1px solid gray;
 }
 
+.download_torrent_url
+{
+color: #008E00;
+border-bottom: 1px dotted #80C780;
+font-size: 1.0em;
+}
+
 .profilepage_section
 {
 width: 400px;
@@ -42,6 +49,14 @@ width: 100%;
 height: 96px;
 border-bottom: 1px dotted black;
 margin: 0px;
+}
+
+.paginationbar
+{
+vertical-align: top;
+width: 50%;
+background: #E5DBD3;
+
 }
 
 .search
@@ -84,23 +99,39 @@ padding: 5px;
 box-sizing: border-box;         /* Opera/IE 8+ */
 width: 555px;
 }
-a
-{
-font-family: Helvetica;
-font-size: 12px;
-color: grey;
-text-decoration: none;
-border-bottom: 1px dotted gray;
-}
+
 
 .a
 {
 font-family: Helvetica;
 font-size: 12px;
-color: grey;
+color: gray;
 text-decoration: none;
 border-bottom: 0px dotted gray;
 }
+
+a
+{
+font-family: Helvetica;
+font-size: 12px;
+color: gray;
+text-decoration: none;
+border-bottom: 1px dotted gray;
+}
+
+a.torrentdl
+{
+color: #008E00;
+border-bottom: 0px dotted #80C780;
+}
+
+.dl_icons
+{
+vertical-align: middle;
+width: 16px;
+height: 16px;
+}
+
 
 .topbar-logo
 {
@@ -124,7 +155,15 @@ border-bottom: 0px;
 .torrentsmalldetails
 {
 font-size: 12px;
-color: gray;
+color: #4e5456;
+text-decoration: none;
+}
+
+a.torrentsmalldetails:hover
+{
+font-size: 12px;
+color: darkblue;
+text-decoration: none;
 }
 
 .torrentpagebg
@@ -176,6 +215,23 @@ padding-left: 14px;
 padding-bottom: 0px;
 }
 
+.multi-column 
+{
+	width: 100%;
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	column-count: 2;
+	-webkit-column-gap: 25px;
+	-moz-column-gap: 25px;
+	column-gap: 25px;
+	font-size: 10px;
+	font-family: arial, helvetica, sans-serif;
+	color: #000000;
+	-webkit-column-rule: 0px solid #000000;
+	-moz-column-rule: 0px solid #000000;
+	column-rule: 0px solid #000000;
+}
+
 .legalpage
 {
 background: #F6F1EE;
@@ -210,16 +266,24 @@ border-radius: 8px 8px 8px 8px;
 }
 .torrentdescription
 {
-width: 925px;
+color: black;
+width: 95%;
 height: 500px;
 border: 1px solid #D2B9A6;
 margin-left: auto;
 margin-right: auto;
 font-family: Consolas;
-font-size: 10px;
+font-size: 12px;
 word-break: break-all;
 display:inline-block;
 background: white;
+}
+
+.commenttextarea
+{
+width: 95%;
+height: 100px;
+border: 1px solid #D2B9A6;
 }
 
 .commentbox
@@ -314,7 +378,7 @@ text-decoration: none;
 	border:0px solid white;
 	text-align:left;
 	border-width:0px 0px 1px 1px;
-	font-size:14px;
+	font-size:12px;
 	font-family:Arial;
 	font-weight:bold;
 	color:#000000;

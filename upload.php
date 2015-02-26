@@ -23,6 +23,8 @@ echo "<title>" . site_name . " - Login</title>"
 
 <?php
 
+
+
 if( defined("installed") )
 {
 echo "
@@ -34,7 +36,7 @@ echo "
 <form action='search.php' id='search' method='get'>
 <a href='index.php' class='a' style='float: left; border-bottom: 0px solid lol;'><img src='skin/default/img/logo.png' width='64' height='64' id='' alt='' class='topbar-logo'></a><br />
 <a href='index.php' title='Search Torrents'>Search Torrents</a>&nbsp;&nbsp;|&nbsp;
-<a href='browse.php' title='Browse Torrents'>Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+<a href='browse.php?p=0' title='Browse Torrents'>Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
 <a href='#' title='Recent Torrent'>Recent Torrents</a>
 <br><br><input type='search' class='search' required='' name='query' value=''> <input value='Search' type='submit' class='submitbutton'><br>
 <input type='hidden' name='page' value='0'>
@@ -50,39 +52,41 @@ echo "
 <div class='uploadbox'>
 <br /><br />
   <font style='font-family: Helvetica'>Torrent File<br>
-  <input type='file' value='Browse...' accept='.torrent'><br /><br />
+  <form action='upload_torrent.php' method='post' enctype='multipart/form-data'>
+      <input type='file' name='torrentfile' value='Browse...' accept='.torrent' size='100'><br /><br />
+      <input type='text' name='title' placeholder='Torrent Title..'><br /><br />
   Category<br>
-  <select required=''>
+  <select required='' name='cat'>
   <optgroup label='Applications'>
-    <option value='1'>Applications/Windows</option>
-    <option value='2'>Applications/OSX</option>
-	<option value='3'>Applications/Linux</option>
-	<option value='4'>Applications/Other</option>
+    <option value='Applications/Windows'>Applications/Windows</option>
+    <option value='Applications/OSX'>Applications/OSX</option>
+	<option value='Applications/Linux'>Applications/Linux</option>
+	<option value='Applications/Other'>Applications/Other</option>
   </optgroup>
   <optgroup label='Games'>
-    <option value='5'>Games/PC</option>
-    <option value='6'>Games/PSX</option>
-	<option value='7'>Games/XBOX</option>
-	<option value='8'>Games/Other</option>
+    <option value='Games/PC'>Games/PC</option>
+    <option value='Games/PSX'>Games/PSX</option>
+	<option value='Games/XBOX'>Games/XBOX</option>
+	<option value='Games/Other'>Games/Other</option>
   </optgroup>
   <optgroup label='Movies'>
-    <option value='9'>Movies/DVD-R</option>
-    <option value='10'>Movies/HD</option>
-	<option value='11'>Movies/VCD</option>
-	<option value='12'>Movies/Other</option>
+    <option value='Movies/DVD-R'>Movies/DVD-R</option>
+    <option value='Movies/HD'>Movies/HD</option>
+	<option value='Movies/VCD'>Movies/VCD</option>
+	<option value='Movies/Other'>Movies/Other</option>
   </optgroup>
 </select><br />
 <br />
 Description<br />
-<textarea style='width: 600px; height: 350px' required='' placeholder='Insert .NFO info, or your own description..'>
+<textarea name='desc' style='width: 600px; height: 350px' required='' placeholder='Insert .NFO info, or your own description..'>
 </textarea>
 <br>
 <br>
-  <input type='submit' width='600' value='Upload Torrent'
-  ></font><br>
+  <input type='submit' width='600' name='upload_torrent' value='Upload Torrent'>
+  </form>
+</font><br>
   <br />
-</div>
-</form>";
+</div>";
 }
 else
 {

@@ -10,7 +10,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
 include('include/config.php');
+include('classes/torrent.php');
+include('classes/Login.php');
 
+$login = new login();
 ?>
 
 <head>
@@ -23,7 +26,7 @@ include('include/config.php');
 <form action="search.php" id="search" method="get">
 <a href="index.php" class="a" style="float: left; border-bottom: 0px solid lol;"><img src="skin/default/img/logo.png" width="64" height="64" id="" alt="" class="topbar-logo"></a><br />
 <a href="index.php" title="Search Torrents">Search Torrents</a>&nbsp;&nbsp;|&nbsp;
-<a href="browse.php" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+<a href="browse.php?p=1" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
 <a href="#" title="Recent Torrent">Recent Torrents</a>
 <br><br><input type="search" class="search" required="" name="query" value=""> <input value="Search" type="submit" class="submitbutton"><br>
 <input type="hidden" name="page" value="0">
@@ -47,9 +50,9 @@ echo "
                         <td >
                             Title
                         </td>
-                        <td>
-                            Uploader
-                        </td>
+						<td>
+						    Size
+						</td>
                     </tr>
 ";
     $query = $_GET['query']; 
@@ -61,14 +64,15 @@ echo "
         $query = htmlspecialchars($query); 
          
         $query = mysql_real_escape_string($query);
-         
+        
         $raw_results = mysql_query("SELECT * FROM torrents
             WHERE (`title` LIKE '%".$query."%') OR (`description` LIKE '%".$query."%')") or die(mysql_error());
          
         if(mysql_num_rows($raw_results) > 0){ 
              
             while($results = mysql_fetch_array($raw_results)){
-                echo 
+                $torrent = new Torrent( $results['link'] );
+				echo 
 				"
                         <td>
                             <a class='torrentlinks' href='torrent.php?id=" . $results['id'] . "'>".$results['id']."</a>
@@ -77,11 +81,11 @@ echo "
                             <a class='torrentlinks' href='torrent.php?id=" . $results['id'] . "'>".$results['cat']."</a>
                         </td>
                         <td>
-                            <a class='torrentlinks' href='torrent.php?id=" . $results['id'] . "'>".$results['title']."<br><span class='torrentsmalldetails'>Uploaded by <a href='user.php?id=". $results['uploader'] . "'>" . $results['uploader'] . "</a></a>
+                            <a class='torrentlinks' href='torrent.php?id=" . $results['id'] . "'>".$results['title']."<br><span class='torrentsmalldetails'>Uploaded " . $results['date'] . ", by <a class='torrentsmalldetails' href='user.php?id=" . $results['uploader'] . "'>" . $results['uploader'] . "</a> [hash: " . $torrent->hash_info() . "]</span> <font style='float:right'><a class='torrentsmalldetails' href='" . $results['link'] . "' title='Download .torrent File'><img src='skin/default/img/dl_torrent.png' width='12' height='12'></a> <a class='torrentsmalldetails' href='" . $torrent->magnet() . "' title='Download Via Magnet'><img src='skin/default/img/dl_magnet.png' width='12' height='12'></font></a>
                         </td>
-                        <td>
-                            <a class='torrentlinks' href='user.php?id=" . $results['id'] . "'>".$results['uploader']."</a>
-                        </td>
+						<td>
+						    <font class='torrentlinks' style='color: black'>" . $torrent->format($torrent->size()) . "</font>
+						</td>
                     </tr>
 				
 				";
@@ -98,15 +102,15 @@ echo "
 			  <font style='font-size: 18px; font-family: Arial;'>
               <a href='index.php' class='a' style='float: left; border-bottom: 0px solid lol;'><img src='skin/default/img/logo.png' width='64' height='64' id='' alt='' class='topbar-logo'></a><br />
               <a href='index.php' title='Search Torrents'>Search Torrents</a>&nbsp;&nbsp;|&nbsp;
-              <a href='browse.php' title='Browse Torrents'>Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+              <a href='browse.php?p=0' title='Browse Torrents'>Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
               <a href='#' title='Recent Torrent'>Recent Torrents</a>
-              <br><br><input type='search' class='search' title='Pirate Search' name='query' value=''> <input value='Search' type='submit' class='submitbutton'><br>
+              <br><br><input type='search' style='margin-bottom: 10px;' class='search' title='Pirate Search' name='query' value=''> <input value='Search' type='submit' class='submitbutton'><br>
               <input type='hidden' name='page' value='0'>
               <input type='hidden' name='orderby' value='99'>
               </form>
               </div>
 			  ";
-		echo "<br>No results returned for keyword '". $query . "'</font>";
+		echo "<center><br>No results returned for keyword '". $query . "'</font></center>";
         }
          
     }
@@ -126,7 +130,7 @@ echo "
               </form>
               </div>
 			  ";
-		echo "<br>Please supply a keyword that's at least ".$min_length." characters long, or try to broaden your keyword.</font>";
+		echo "<center>Please supply a keyword that's at least ".$min_length." characters long, or try to broaden your keyword.</font>";
     }
 ?>
 
@@ -134,7 +138,37 @@ echo "
 </div>
 <br>
 <br>
-<a href="./index.php">Return To Main Site</a></center>
+<center>
+<?php
+if ($login->isUserLoggedIn() == true)
+{
+echo "Logged in as <b>" . $_SESSION['user_name'] . "</b> <b><a href='index.php?logout'>[LOGOUT]</a></b> |";
+}
+else
+{
+echo "<a href='login.php'>Login</a> |
+      <a href='register.php'> Register</a> |";
+      
+}
+
+echo "
+<a href='upload.php'>Upload Torrent</a> |
+<a href='my.php'>UCP</a> |
+<a href='/blog/'>Blog</a> |
+<a href='legal.php'>Legal</a> |
+<a href='stats.php'>Site Statistics</a> |
+<a href='about.php'>About J-Tracker</a>
+</nav>
+<br>
+<br>
+<span class='footertext'>Site Powered by <a href='http://www.github.com/j0rpi/j-tracker'>J-Tracker v0.3</a><br></span>
+<br>
+<br>
+<br>
+<br>
+<a href='http://www.kopimi.com/kopimi/' class='torrentlinks'><img src='skin/default/img/kopimi.gif'/></a>
 </center>
+</body>";
+?>
 </body>
 </html>

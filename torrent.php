@@ -12,7 +12,7 @@
 <form action="search.php" id="search" method="get">
 <a href="index.php" class="a" style="float: left; border-bottom: 0px solid lol;"><img src="skin/default/img/logo.png" width="64" height="64" id="" alt="" class="topbar-logo"></a><br />
 <a href="index.php" title="Search Torrents">Search Torrents</a>&nbsp;&nbsp;|&nbsp;
-<a href="browse.php" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+<a href="browse.php?p=0" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
 <a href="#" title="Recent Torrent">Recent Torrents</a>
 <br><br><input type="search" class="search" required="" name="query" value=""> <input value="Search" type="submit" class="submitbutton"><br>
 <input type="hidden" name="page" value="0">
@@ -23,6 +23,7 @@
 include('include/config.php');
 include('classes/login.php');
 include('classes/Registration.php');
+include('classes/torrent.php');
 
 $login = new Login();
 $register = new Registration();
@@ -34,6 +35,7 @@ $register = new Registration();
     <link rel="stylesheet" type="text/css" href="skin/default/style.css"/>
 </head>
 <body>
+
 <?php
 echo "
 <center>
@@ -46,7 +48,9 @@ echo "
 $query = mysql_query("SELECT * FROM torrents WHERE id='".htmlspecialchars($_GET['id'])."'")
 or die("Database is currently AFK, it'll be back shortly."); 
              
-            while($results = mysql_fetch_array($query)){
+            while($results = mysql_fetch_array($query))
+			{
+				$torrent = new Torrent( $results['link'] );
                 echo 
 				"
 				<table >
@@ -76,6 +80,8 @@ or die("Database is currently AFK, it'll be back shortly.");
 					.$results['description'].
 					"
                     </textarea>
+					<br />
+					<div style='float:left; margin-left: 15px;'><a class='torrentdl' href='" . $results['link'] . "'><font class='torrentdl'><img width='16' height='16' src='skin/default/img/dl_torrent.png' /> Download Torrent</font></a> or <a class='torrentdl' href=' " . $torrent->magnet() . "'><img width='16' height='16' src='skin/default/img/dl_magnet.png' /> Download Magnet</a><br /></div>
 					</div>
 					
 <br />					
@@ -114,7 +120,7 @@ if ($login->isUserLoggedIn() == true)
 	<div class='commentbox'><br>
 	Write New Comment
 <form method='post' action='torrent.php?id=" . htmlspecialchars($_GET['id']) . "' name='write_comment'>
-	<textarea name='comment_text' style='width: 925px; height: 100px'></textarea><br><br>
+	<textarea name='comment_text' class='commenttextarea'></textarea><br><br>
 	<input type='hidden' name='torrent_id' value='" . htmlspecialchars($_GET['id']) . "' style='width: 0px; height: 0px;' />
 	<input type='submit' name='addcomment' value='Add Comment'>
 	</form><br>";

@@ -22,7 +22,7 @@ include('include/config.php');
 <form action="search.php" id="search" method="get">
 <a href="index.php" class="a" style="float: left; border-bottom: 0px solid lol;"><img src="skin/default/img/logo.png" width="64" height="64" id="" alt="" class="topbar-logo"></a><br />
 <a href="index.php" title="Search Torrents">Search Torrents</a>&nbsp;&nbsp;|&nbsp;
-<a href="browse.php" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
+<a href="browse.php?p=0" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
 <a href="#" title="Recent Torrent">Recent Torrents</a>
 <br><br><input type="search" class="search" required="" name="query" value=""> <input value="Search" type="submit" class="submitbutton"><br>
 <input type="hidden" name="page" value="0">
