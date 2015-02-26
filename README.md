@@ -19,4 +19,4 @@ J-Tracker does not rely on other sites and/or databases. It purely uses it's own
 5. Done
 
 # Is this script finished?
-No. Only thing left is .torrent file translations (using torrent-rw, located in include/torrent.php) aswell as the ability to upload torrents. Rest is done.
+Yes, or atleast in a 100% working state. I would recommend that you make some minor modifications that suits your needs. 
