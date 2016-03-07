@@ -81,7 +81,7 @@ or die("Database is currently AFK, it'll be back shortly.");
 					"
                     </textarea>
 					<br />
-					<div style='float:left; margin-left: 15px;'><a class='torrentdl' href='" . $results['link'] . "'><font class='torrentdl'><img width='16' height='16' src='skin/default/img/dl_torrent.png' /> Download Torrent</font></a> or <a class='torrentdl' href=' " . $torrent->magnet() . "'><img width='16' height='16' src='skin/default/img/dl_magnet.png' /> Download Magnet</a><br /></div>
+					<div style='float:left; margin-left: 15px;'><a class='torrentdl' href='" . $results['link'] . "'><font class='torrentdl'><img width='16' height='16' src='skin/default/img/dl_torrent.png'  /> Download Torrent</font></a> or <a class='torrentdl' href=' " . $torrent->magnet() . "'><img width='16' height='16' src='skin/default/img/dl_magnet.png' style='vertical-align: middle; margin-bottom: 3px' /> Download Magnet</a><br /></div>
 					</div>
 					
 <br />					
