@@ -1,3 +1,4 @@
+![J-Tracker Main Page](screenshot.png?raw=true "J-Tracker Main Page")
 # j-tracker
 This is a replica of The Pirate Bay website, you'll notice this instantly after install. While J-Tracker does not have any tracker software, it acts purely
 as a search index for torrents added by it's users from a database. 
