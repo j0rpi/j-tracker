@@ -58,9 +58,7 @@ echo "
 <br>
 <br>
 <div class='torrenttable' >
-<center>
 <span style='font-family: Helvetica; font-size: 24px'>". $_SESSION['user_name'] . " :: User Control Panel</b></span><br><br>
-<center>
 ";
      
 
@@ -106,7 +104,7 @@ else
 <?php
 if ($login->isUserLoggedIn() == true)
 {
-echo "Logged in as <b>" . $_SESSION['user_name'] . "</b> <b><a style='color: dimgray' href='index.php?logout'>[LOGOUT]</a></b> |";
+echo "Logged in as <b>" . $_SESSION['user_name'] . "</b> <a href='index.php?logout'>Logout</a><a href='inbox.php'> | Inbox(<font style='color: maroon'><b>1</b></font>) |";
 }
 else
 {

@@ -12,7 +12,7 @@
 <!-- <form action="" id="login" method="get"> -->
 <?php
 include('include/config.php');
-include('classes/login.php');
+include('classes/Login.php');
 
 $login = new Login();
 ?>
@@ -97,7 +97,7 @@ echo "
 <nav>";
 if ($login->isUserLoggedIn() == true)
 {
-echo "Logged in as <b>" . $_SESSION['user_name'] . "</b> <b><a href='index.php?logout'>[LOGOUT]</a></b> |";
+echo "Logged in as <b>" . $_SESSION['user_name'] . "</b> <a href='index.php?logout'>Logout</a><a href='inbox.php'> | Inbox(<font style='color: maroon'><b>1</b></font>) |";
 }
 else
 {

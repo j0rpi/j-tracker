@@ -47,6 +47,10 @@ class Registration
 		{
 			$this->registerSysOp();
 		}
+		if (isset($_POST["sendpm"]))
+		{
+			$this->sendPM();
+		}
     }
 	
 	public function updatePassword()
@@ -57,12 +61,12 @@ class Registration
 	
 	if ($query_update_password) 
 	    {
-            $password_change_status = "Password has been updated successfully!";
+            $password_change_status = "<center>Password has been updated successfully!</center><br />";
 			echo $password_change_status;
         } 
 		else 
 		{
-            $password_change_status = "An error occured while trying to update password. Please try again.";
+            $password_change_status = "<center>An error occured while trying to update password. Please try again.</center><br />";
 			echo $password_change_status;
         }
 	}
@@ -75,13 +79,15 @@ class Registration
 	
 	if ($query_update_avatar) 
 	    {
-            echo "Avatar updated successfully!";
+            echo "<center>Avatar updated successfully!</center><br />";
         } 
 		else 
 		{
             echo "An error occured while trying to update avatar. Please try again.";
         }
 	}
+	
+	
 	
 	public function addComment()
     {
@@ -91,11 +97,27 @@ class Registration
 	
 	if ($query_add_comment) 
 	    {
-            echo "Comment added successfully!";
+            echo "<center>Comment added successfully!</center><br />";
         } 
 		else 
 		{
-            echo "An error occured while trying to add comment. Please try again.";
+            echo "<center>An error occured while trying to add comment. Please try again.</center><br />";
+        }
+	}
+	
+	public function sendPM()
+    {
+    $this->db_connection = new mysqli(dbhost, dbuser, dbpass, dbname);
+	$sql = "INSERT INTO pms (title, message, sender, reciever, date) VALUES ('" . $_POST['title']  . "', '" . mysql_real_escape_string($_POST['message']) . "', '" . $_POST['sender'] . "', '" . $_POST['reciever'] . "', '" . date('F j Y, H:i:s') . "')";
+	$query_send_pm = $this->db_connection->query($sql);
+	
+	if ($query_send_pm) 
+	    {
+            echo "<font style='color: darkgreen'><center>Message sent successfully.</font></center><br />";
+        } 
+		else 
+		{
+			echo "<font style='color: maroon'><center>Message could not be sent. The recipent might have turned off PM's, or blacklisted you.</font></center><br />";
         }
 	}
 	

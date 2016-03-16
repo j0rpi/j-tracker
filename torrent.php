@@ -21,7 +21,7 @@
 </div>
 <?php
 include('include/config.php');
-include('classes/login.php');
+include('classes/Login.php');
 include('classes/Registration.php');
 include('classes/torrent.php');
 

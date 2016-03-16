@@ -1,8 +1,8 @@
 <!--
 
  J-Tracker
- file: inbox.php
- purpose: shows all recieved pm's
+ file: sent.php
+ purpose: shows all sent pm's
 
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -60,7 +60,7 @@ $pagination = new Zebra_Pagination();
 <center>
 <br>
 <br>
-<span style='font-family: Helvetica; font-size: 24px'><?php echo $_SESSION['user_name'] ?> :: Inbox</b></span><br><br>
+<span style='font-family: Helvetica; font-size: 24px'><?php echo $_SESSION['user_name'] ?> :: Sent Messages</b></span><br><br>
 <a href="send.php">Send New Message</a>&nbsp;&nbsp;|&nbsp;
 <a href="inbox.php" title="Check your inbox">Inbox</a>&nbsp;&nbsp;|&nbsp;
 <a href="sent.php" title="Check your sent messages">Sent</a>&nbsp;&nbsp;|&nbsp;
@@ -70,7 +70,7 @@ $pagination = new Zebra_Pagination();
 <?php
 if ($login->isUserLoggedIn() == true)
 {
-$MySQL = "SELECT SQL_CALC_FOUND_ROWS * FROM pms WHERE reciever='" . $_SESSION['user_name'] . "' LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . ", " . $records_per_page . "";
+$MySQL = "SELECT SQL_CALC_FOUND_ROWS * FROM pms WHERE sender='" . $_SESSION['user_name'] . "' LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . ", " . $records_per_page . "";
 
 if (!($result = @mysql_query($MySQL))) 
 {
@@ -104,9 +104,9 @@ $pagination->records_per_page($records_per_page);
                             Title
                         </td>
 						<td width='80'>
-						    Sender
+						    Reciever
 						</td>
-						<td width='170'>
+						<td width='120'>
 							Date
 						</td>
 </tr>	
@@ -123,10 +123,10 @@ echo "
                         
 						
                         <td>
-                            <a class='torrentlinks' href='readpm.php?id=" . $row['id'] . "'>" .$row['title']. "</a>
+                            <a class='torrentlinks'>" .$row['title']. "</a>
                         </td>
 						<td>
-                            <a class='torrentlinks'>" .$row['sender']. "</a>
+                            <a class='torrentlinks'>" .$row['reciever']. "</a>
                         </td>
 						<td>
 						    <font class='torrentlinks'>" .$row['date']. "</font>
@@ -144,7 +144,7 @@ echo "
 <?php
 if($totalpms < 1)
 {
-	echo "<br />There are no messages in your inbox.";
+	echo "<br />There are no sent messages to display.";
 }
 echo "<div class='paginationbar'>";
 $pagination->render();

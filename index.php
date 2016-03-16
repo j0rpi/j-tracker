@@ -67,7 +67,7 @@ echo "
 
 if ($login->isUserLoggedIn() == true)
 {
-echo "Logged in as <b>" . $_SESSION['user_name'] . "</b> <b><a href='index.php?logout'>[LOGOUT]</a><a href='inbox.php'>[INBOX]</b> |";
+echo "Logged in as <b>" . $_SESSION['user_name'] . "</b> <a href='index.php?logout'>Logout</a><a href='inbox.php'> | Inbox(<font style='color: maroon'><b>1</b></font>) |";
 }
 else
 {
