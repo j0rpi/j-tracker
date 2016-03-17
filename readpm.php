@@ -81,7 +81,7 @@ or die("Database is currently AFK, it'll be back shortly.");
 </textarea>
 <input type='hidden' name='title' value='" . $results['title'] . "'>
 <input type='hidden' name='sender' value='" . $_SESSION['user_name'] . "'>
-<input type='hidden' name='reciever' value='" . $results['reciever'] . "'><br />
+<input type='hidden' name='reciever' value='" . $results['sender'] . "'><br />
 <input type='submit' name='sendpm' value='Reply' style='float: right; margin-right: 12px'>
 </form>
 

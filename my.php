@@ -57,7 +57,7 @@ echo "
 	<center>
 <br>
 <br>
-<div class='torrenttable' >
+<div class='torrenttable'  >
 <span style='font-family: Helvetica; font-size: 24px'>". $_SESSION['user_name'] . " :: User Control Panel</b></span><br><br>
 ";
      
@@ -67,17 +67,23 @@ $query = mysql_query("SELECT * FROM users WHERE user_name='" . $_SESSION['user_n
 while($user_results = mysql_fetch_array($query))
 {
 	echo "
-	     <div class='profilebg'>
+	     <div class='profilebg' style='height: 750px'>
 		 <br><br><div class='profilepage_section'>
 		 <form method='post' action='my.php' name='avatar'> 
          <br><br><img class='profilepage_avatar' src='" . $user_results['user_avatar'] . "' width='64' height='64' /><br><br><input type='text' name='avatar_url' value='" . $user_results['user_avatar'] . "' style='width: 350px';><br>
 		 <br><input type='submit' name='updateavatar' value='Update Avatar ...'>
 		 </form>
+		 <br />
+		 <br />
+		 <br><br><div class='profilepage_section'>
+		 <form method='post' action='my.php'> 
+         <br><br><textarea name='pgp' class='search' style='width: 325px; height: 110px'>" . $user_results['user_pgp'] . "</textarea><br>
+		 <br><input type='submit' name='updatepgp' value='Update PGP Key'>
+		 </form>
 		 </div>
 		 <br>";
 }
 ?>
-
 <form method='post' action='my.php' name='password'>      
 <br><br><div class='profilepage_section'><br><br><br>New Password<br><input type='password' name='user_password_new' pattern='.{6,}' required autocomplete='off'><br>
 <br>Confirm New Password<br>
@@ -87,7 +93,7 @@ while($user_results = mysql_fetch_array($query))
 </form>
 <br>
 </div>
-</div><br>
+</div>
 
 <?php
 }
@@ -104,7 +110,8 @@ else
 <?php
 if ($login->isUserLoggedIn() == true)
 {
-echo "Logged in as <b>" . $_SESSION['user_name'] . "</b> <a href='index.php?logout'>Logout</a><a href='inbox.php'> | Inbox(<font style='color: maroon'><b>1</b></font>) |";
+$unread = mysql_query("SELECT * FROM pms WHERE unread='yes' AND reciever='" . $_SESSION['user_name'] . "'") or die(mysql_error());
+echo "<br />Logged in as <b>" . $_SESSION['user_name'] . "</b> <a href='index.php?logout'>Logout</a><a href='inbox.php'> | Inbox(<font style='color: maroon'><b>" . mysql_num_rows($unread) . "</b></font>) |";
 }
 else
 {

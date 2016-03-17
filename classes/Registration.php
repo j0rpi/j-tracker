@@ -39,6 +39,10 @@ class Registration
 		{
 			$this->updateAvatar();
 		}
+		if (isset($_POST["updatepgp"]))
+		{
+			$this->updatePGP();
+		}
 		if (isset($_POST["addcomment"]))
 		{
 			$this->addComment();
@@ -50,6 +54,10 @@ class Registration
 		if (isset($_POST["sendpm"]))
 		{
 			$this->sendPM();
+		}
+		if (isset($_POST["replypm"]))
+		{
+			$this->replyPM();
 		}
     }
 	
@@ -87,6 +95,22 @@ class Registration
         }
 	}
 	
+	public function updatePGP()
+    {
+    $this->db_connection = new mysqli(dbhost, dbuser, dbpass, dbname);
+	$sql = "UPDATE users SET user_pgp = '" . $_POST['pgp'] . "' WHERE user_name = '" . $_SESSION['user_name'] . "'";
+	$query_update_avatar = $this->db_connection->query($sql);
+	
+	if ($query_update_avatar) 
+	    {
+            echo "<center>PGP key updated successfully!</center><br />";
+        } 
+		else 
+		{
+            echo "An error occured while trying to update PGP key. Please try again.";
+        }
+	}
+	
 	
 	
 	public function addComment()
@@ -109,6 +133,22 @@ class Registration
     {
     $this->db_connection = new mysqli(dbhost, dbuser, dbpass, dbname);
 	$sql = "INSERT INTO pms (title, message, sender, reciever, date) VALUES ('" . $_POST['title']  . "', '" . mysql_real_escape_string($_POST['message']) . "', '" . $_POST['sender'] . "', '" . $_POST['reciever'] . "', '" . date('F j Y, H:i:s') . "')";
+	$query_send_pm = $this->db_connection->query($sql);
+	
+	if ($query_send_pm) 
+	    {
+            echo "<font style='color: darkgreen'><center>Message sent successfully.</font></center><br />";
+        } 
+		else 
+		{
+			echo "<font style='color: maroon'><center>Message could not be sent. The recipent might have turned off PM's, or blacklisted you.</font></center><br />";
+        }
+	}
+	
+	public function replyPM()
+    {
+    $this->db_connection = new mysqli(dbhost, dbuser, dbpass, dbname);
+	$sql = "INSERT INTO pms (title, message, sender, reciever, date) VALUES ('" . $_POST['title']  . "', '" . mysql_real_escape_string($_POST['message']) . "', '" . $_POST['reciever'] . "', '" . $_POST['sender'] . "', '" . date('F j Y, H:i:s') . "')";
 	$query_send_pm = $this->db_connection->query($sql);
 	
 	if ($query_send_pm) 

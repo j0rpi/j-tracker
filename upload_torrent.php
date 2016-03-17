@@ -1,6 +1,6 @@
 <?php
 include("include/config.php");
-include('classes/login.php');
+include('classes/Login.php');
 $login = new Login();
 define("SITE_ROOT", realpath(dirname(__FILE__)));
 define("UPLOAD_DIR", SITE_ROOT . "/torrents/");

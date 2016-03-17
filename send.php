@@ -61,7 +61,7 @@ echo "
 <b>Title</b><br /><br />
 <input style='width: 500px' class='search' name='title' required><br /><br />
 <b>Message</b><br /><br />
-<textarea name='message' style='width: 500px; height: 150px' required>
+<textarea name='message' class='search' style='width: 500px; height: 150px' required>
 </textarea>
 <br />
 <input type='checkbox'>Encrypt message with my PGP key
