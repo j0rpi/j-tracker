@@ -41,6 +41,7 @@ include('include/config.php');
 				<br />
 				torrent-rw by <a href="https://github.com/adriengibrat"><b>adriengibrat</b></a><br />
 				php-login by <a href="http://www.php-login.net"><b>The PHP-Login Project</b></a><br />
+				OpenPGP by <a href="https://github.com/Sassoft/OpenPGP"><b>PhpStorm</b></a><br />
 				<br />
                     
 </div>

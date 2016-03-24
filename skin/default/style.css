@@ -1,6 +1,6 @@
 body
 {
-font-family: Helvetica;
+font-family: Arial;
 font-size: 12px;
 }
 
@@ -38,7 +38,7 @@ background: #E9E6E4;
 
 .cats
 {
-font-family: Helvetica;
+font-family: Arial;
 font-size: 12px;
 }
 
@@ -83,7 +83,7 @@ box-sizing: border-box;         /* Opera/IE 8+ */
 .uploadbox
 {
 background: #F6F1EE;
-font-family: Helvetica;
+font-family: Arial;
 width: 800px;
 height: 600px;
 border-radius: 8px 8px 8px 8px;
@@ -103,7 +103,7 @@ width: 555px;
 
 .a
 {
-font-family: Helvetica;
+font-family: Arial;
 font-size: 12px;
 color: gray;
 text-decoration: none;
@@ -112,7 +112,7 @@ border-bottom: 0px dotted gray;
 
 a
 {
-font-family: Helvetica;
+font-family: Arial;
 font-size: 12px;
 color: gray;
 text-decoration: none;
@@ -145,7 +145,7 @@ padding-right: 10px;
 
 .torrentlinks
 {
-font-family: Helvetica;
+font-family: Arial;
 font-size: 14px;
 color: #009;
 text-decoration: none;
@@ -201,7 +201,7 @@ width: 97%;
 
 .timestamp
 {
-font-family: Helvetica;
+font-family: Arial;
 font-size: 12px; 
 padding-left: 2px; 
 color: #BB967A;
@@ -209,7 +209,7 @@ color: #BB967A;
 
 .comment-user
 {
-font-family: Helvetica;
+font-family: Arial;
 font-size: 0.6em; 
 padding-left: 14px; 
 padding-bottom: 0px;
@@ -235,7 +235,7 @@ padding-bottom: 0px;
 .legalpage
 {
 background: #F6F1EE;
-font-family: Helvetica;
+font-family: Arial;
 font-size: 12px;
 width: 600px;
 height: 125px;
@@ -250,7 +250,7 @@ word-break: normal | break-all | keep-all;
 .loginbox
 {
 background: #F6F1EE;
-font-family: Helvetica;
+font-family: Arial;
 width: 250px;
 height: 225px;
 border-radius: 8px 8px 8px 8px;
@@ -259,7 +259,7 @@ border-radius: 8px 8px 8px 8px;
 .registerbox
 {
 background: #F6F1EE;
-font-family: Helvetica;
+font-family: Arial;
 width: 250px;
 height: 350px;
 border-radius: 8px 8px 8px 8px;
@@ -298,7 +298,7 @@ background: #F6F1EE;
 
 .footertext
 {
-font-family: Helvetica;
+font-family: Arial;
 font-size: 12px;
 color: gray;
 text-decoration: none;

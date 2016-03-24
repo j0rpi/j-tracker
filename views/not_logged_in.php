@@ -30,5 +30,6 @@ if (isset($login)) {
 
 </form>
 
-
-<a href="register.php">Register new account</a>
+<br />
+or <a href="register.php">Register new account</a>
+<br />

@@ -39,7 +39,7 @@ echo "
 <br>
 <br>
 <div class='torrenttable' >
-<span style='font-family: Helvetica; font-size: 24px'>". $_SESSION['user_name'] . " :: I</b></span><br><br>
+<span style='font-family: Helvetica; font-size: 24px'>Search results from keyword: <b>" . $_GET['query'] . " </b></span><br><br>
 <table >
 <tr>
                         <td>

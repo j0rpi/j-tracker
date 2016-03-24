@@ -171,7 +171,7 @@ function config()
 	$config_content .= "define('site_logo', '" . $_POST['site_logo'] . "');\n";
     $config_content .= "define('site_name', '" . $_POST['site_name'] . "');\n";
 	$config_content .= "\n";
-	$config_content .= "# USer Settings\n";
+	$config_content .= "# User Settings\n";
 	$config_content .= "define('avatars_dir', '" . $_POST['avatar_path'] . "');\n";
 	$config_content .= "# Localization\n";
     $config_content .= "define('lang', '" . $_POST['lang'] . "');\n";

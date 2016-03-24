@@ -123,7 +123,7 @@ echo "
                         
 						
                         <td>
-                            <a class='torrentlinks'>" .$row['title']. "</a>
+                            <a class='torrentlinks' href='readpm.php?id=" . $row['id'] . "'>" .$row['title']. "</a>
                         </td>
 						<td>
                             <a class='torrentlinks'>" .$row['reciever']. "</a>
