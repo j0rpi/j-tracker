@@ -12,6 +12,7 @@ J-Tracker does not rely on other sites and/or databases. It purely uses it's own
 - Ability to upload torrents
 - Comments on each torrent
 - PM system (send, recieve, read)
+- Friends system (friendlist, blocked users)
 - PGP encryption (optional)
 - Easy installer
 
