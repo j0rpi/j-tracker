@@ -390,3 +390,25 @@ text-decoration: none;
 .torrenttable tr:first-child td:last-child{
 	border-width:0px 0px 1px 1px;
 }
+
+.friends_buttons
+{
+  border-radius: 8px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  background: #D2B9A6;
+  padding: 5px;
+  text-decoration: none;
+  box-shadow:none !important;
+  border:none !important;
+  outline: none !important;
+  
+}
+
+.friends_buttons:hover
+{
+  transition: all 0.3s ease 0s;
+  background: #AB9687;
+  cursor: pointer;
+}

@@ -111,7 +111,7 @@ else
 if ($login->isUserLoggedIn() == true)
 {
 $unread = mysql_query("SELECT * FROM pms WHERE unread='yes' AND reciever='" . $_SESSION['user_name'] . "'") or die(mysql_error());
-echo "<br />Logged in as <b>" . $_SESSION['user_name'] . "</b> <a href='index.php?logout'>Logout</a><a href='inbox.php'> | Inbox(<font style='color: maroon'><b>" . mysql_num_rows($unread) . "</b></font>) |";
+echo "<br />Logged in as <b>" . $_SESSION['user_name'] . "</b> <a href='index.php?logout'>Logout</a> | <a href='inbox.php'>Inbox(<font style='color: maroon'><b>" . mysql_num_rows($unread) . "</b></font>)</a> | <a href='friends.php'>Friends</a> |";
 }
 else
 {
