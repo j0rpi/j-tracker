@@ -135,7 +135,7 @@ echo "
 <?php
 if($totalpms < 1)
 {
-	echo "<br />You have no friends.";
+	echo "<br />There are no users in your blocklist.";
 }
 echo "<div class='paginationbar'>";
 $pagination->render();

@@ -64,7 +64,7 @@ echo "
 <textarea name='message' class='search' style='width: 500px; height: 150px' required>
 </textarea>
 <br />
-<input type='checkbox'>Encrypt message with my PGP key
+<input type='checkbox'>Encrypt message with recievers PGP key (if they have one)
 <br />
 <br />
   <input type='submit' width='600' name='sendpm' value='Send Message'>

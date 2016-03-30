@@ -112,16 +112,17 @@ $pagination->records_per_page($records_per_page);
 
 <tr <?php echo $index++ % 2 ? ' class="even"' : ''?>>
 
-<?php
 
+<?php
+echo "<form action='friends.php' method='POST'>";
 echo "
                         
 						
                         <td>
-                            <a class='torrentlinks' href='user.php?id=" . $row['friendid'] . "'>" .$row['friendid']. "</a>
+                            <a class='torrentlinks' href='user.php?id=" . $row['friendid'] . "'><input type='hidden' id='friendid' value='" . $row['friendid'] . "' name='friendid'>" . $row['friendid'] . "</a>
                         </td>
 						<td>
-                            <a class='torrentlinks'><input type='button' class='friends_buttons' value='Send Message' /> <input type='button' class='friends_buttons' value='Delete' /> <input type='button' class='friends_buttons' value='Block' /></a>
+                            <a class='torrentlinks'><input type='button' class='friends_buttons' value='Send Message' /> <input type='button' class='friends_buttons' value='Delete' /> <input type='submit' name='block' class='friends_buttons' value='Block' /></form></a>
                         </td>	
                     </tr>
 				

@@ -59,6 +59,10 @@ class Registration
 		{
 			$this->replyPM();
 		}
+		if (isset($_POST["block"]))
+		{
+			$this->blockUser();
+		}
     }
 	
 	public function updatePassword()
@@ -159,6 +163,33 @@ class Registration
 		{
 			echo "<font style='color: maroon'><center>Message could not be sent. The recipent might have turned off PM's, or blacklisted you.</font></center><br />";
         }
+	}
+	
+	public function blockUser()
+    {
+    $this->db_connection = new mysqli(dbhost, dbuser, dbpass, dbname);
+	$sql = "INSERT INTO friends (user, friendid, blocked) VALUES ('". $_SESSION['user_name'] . "', '" . $_POST['friendid'] . "', 'yes') ON DUPLICATE KEY UPDATE user = VALUES(user), friendid = VALUES(friendid), blocked = VALUES(blocked)";
+	$sql2 = "DELETE FROM friends WHERE user='" . $_SESSION['user_name'] ."' AND friendid='" . $_POST['friendid'] . "' AND blocked='no'";
+	$query_block = $this->db_connection->query($sql);
+	$query_delete = $this->db_connection->query($sql2);
+	
+	if ($query_block) 
+	    {
+            echo "<font style='color: darkgreen'><center><b>" . $_POST['friendid'] . "</b> has been added to the blocklist.</font></center><br />";
+            if($query_delete)
+			{
+				// Don't do nothin'
+			}
+			else
+			{
+				// Nothin' here either!
+			}
+		} 
+		else
+		{
+			echo "<font style='color: maroon'><center>Failed to block user. This user might not exist anymore.</font></center>";
+			echo "<br><br><br><b>[DEBUG]</b> user: " . $_SESSION['user_name'] . " friendid: " . $_POST['friendid'];
+		}
 	}
 	
 	
