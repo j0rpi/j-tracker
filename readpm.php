@@ -49,8 +49,8 @@ echo "
 
      
 	 
-$query = mysql_query("SELECT * FROM pms WHERE id='".htmlspecialchars($_GET['id'])."'")
-or die("Database is currently AFK, it'll be back shortly."); 
+$query = mysql_query("SELECT * FROM pms WHERE id='" . htmlspecialchars($_GET['id']) . "'")
+or die("Database is currently AFK, it'll be back shortly." . mysql_error()); 
              
             while($results = mysql_fetch_array($query))
 			{

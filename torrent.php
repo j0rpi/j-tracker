@@ -68,7 +68,7 @@ or die("Database is currently AFK, it'll be back shortly.");
                            Category: ".$results['cat']."
                         </td>
                         <td>
-                           Uploader: <a href='user.php?id=".$results['uploader']."'>" . $results['uploader'] . "
+                           Uploader: " . $register->getUserLevel($results['uploader']) . " <a href='user.php?id=".$results['uploader']."'>" . $results['uploader'] . "
                         </td>
 	 
                     </tr>
@@ -81,7 +81,7 @@ or die("Database is currently AFK, it'll be back shortly.");
 					"
                     </textarea>
 					<br />
-					<div style='float:left; margin-left: 15px;'><a class='torrentdl' href='" . $results['link'] . "'><font class='torrentdl'><img width='16' height='16' src='skin/default/img/dl_torrent.png'  /> Download Torrent</font></a> or <a class='torrentdl' href=' " . $torrent->magnet() . "'><img width='16' height='16' src='skin/default/img/dl_magnet.png' style='vertical-align: middle; margin-bottom: 3px' /> Download Magnet</a><br /></div>
+					<div style='float:left; margin-left: 20px;'><a class='torrentdl' href='" . $results['link'] . "'><font class='torrentdl'><img width='16' height='16' src='skin/default/img/dl_torrent.png'  /> Download Torrent</font></a> or <a class='torrentdl' href=' " . $torrent->magnet() . "'><img width='16' height='16' src='skin/default/img/dl_magnet.png' style='vertical-align: middle; margin-bottom: 3px' /> Download Magnet</a></div><div style='float:right; margin-right: 22px;'><img src='skin/default/img/dl_report.png' style='vertical-align: middle; margin-bottom: 3px' /><a class='torrentdl'>Report Torrent</a></div>
 					</div>
 					
 <br />					
@@ -102,7 +102,7 @@ echo "<div class='commentpagebg'><font style='font-size: 24px; font-family: Helv
 	{
 	  while($comments = mysql_fetch_array($query2))
 	  {
-		echo "<p align='left' class='comment-user'><a href='user.php?id=" . $comments['user'] . "'>" . $comments['user'] . "</a> - <font class='timestamp'>" . $comments['time'] . " CET</b></font><div class='comment'>" . $comments['text'] . "<br></div>";
+		echo "<p align='left' class='comment-user'>" . $register->getUserLevel($comments['user']) . " <a href='user.php?id=" . $comments['user'] . "'>" . $comments['user'] . "</a> - <font class='timestamp'>" . $comments['time'] . " CET</b></font><div class='comment'>" . $comments['text'] . "<br></div>";
 	  }
 	}
 	else

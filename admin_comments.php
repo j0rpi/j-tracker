@@ -1,8 +1,8 @@
 <!--
 
  J-Tracker
- file: browse.php
- purpose: shows all torrents ever uploaded
+ file: inbox.php
+ purpose: shows all recieved pm's
 
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -10,14 +10,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
 include('include/config.php');
-include('classes/torrent.php');
-include('classes/Registration.php');
 require('classes/paginator.php');
+include('classes/Login.php');
+include('classes/Registration.php');
+
+
+
+$login = new Login();
+$register = new Registration();
+
+if (isset($login)) {
+    if ($login->errors) {
+        foreach ($login->errors as $error) {
+            echo $error;
+        }
+    }
+    if ($login->messages) {
+        foreach ($login->messages as $message) {
+            echo $message;
+        }
+    }
+}
 
 // Limit Search Results Per Page
 $records_per_page = 15;
-
-$functions = new Registration();
 
 // Define Pagination Class
 $pagination = new Zebra_Pagination();
@@ -44,8 +60,16 @@ $pagination = new Zebra_Pagination();
 <center>
 <br>
 <br>
+<span style='font-family: Helvetica; font-size: 24px'><?php echo $_SESSION['user_name'] ?> :: Admin Panel > Manage Comments</b></span><br><br>
+<a href="admin_users.php">Manage Users</a>&nbsp;&nbsp;|&nbsp;
+Manage Torrents&nbsp;&nbsp;|&nbsp;
+<a href="sent.php">Manage Comments</a>
+<br />
+<br />
 <?php
-$MySQL = 'SELECT SQL_CALC_FOUND_ROWS * FROM torrents LIMIT ' . (($pagination->get_page() - 1) * $records_per_page) . ', ' . $records_per_page . '';
+if ($login->isUserLoggedIn() == true)
+{
+$MySQL = "SELECT SQL_CALC_FOUND_ROWS * FROM comments LIMIT " . (($pagination->get_page() - 1) * $records_per_page) . ", " . $records_per_page . "";
 
 if (!($result = @mysql_query($MySQL))) 
 {
@@ -61,57 +85,79 @@ $rows = mysql_fetch_assoc(mysql_query('SELECT FOUND_ROWS() AS rows'));
 // pass the total number of records to the pagination class
 $pagination->records($rows['rows']);
 
+// give our temp string the total rows found
+$totalpms = $rows['rows'];
+
 // records per page
 $pagination->records_per_page($records_per_page);
 
 ?>
 <div class='torrenttable' >
+
 <table>
 
 <tr>
                         
-						<td width='110'>
-                            Category
-                        </td>
+						
                         <td style=''>
-                            Title
+                            Torrent ID
                         </td>
-						<td width='80'>
-						    Size
+						<td width='300'>
+						    Comment
+						</td>
+						<td style=''>
+                            By
+                        </td>
+						<td width='180'>
+						    Date
 						</td>
 </tr>	
 
 <?php $index = 0?>
+
 <?php while ($row = mysql_fetch_assoc($result)):?>		
 
 <tr <?php echo $index++ % 2 ? ' class="even"' : ''?>>
+
 <?php
 
-$torrent = new Torrent( $row['link'] );
 echo "
                         
-						<td width='45px'>
-                            <a class='torrentlinks' href='torrent.php?id=" . $row['id'] . "'>".$row['cat']."</a>
-                        </td>
+						
                         <td>
-                            <a class='torrentlinks' href='torrent.php?id=" . $row['id'] . "'>".$row['title']."<br><span class='torrentsmalldetails'>Uploaded " . $row['date'] . ", by " . $functions->getUserLevel($row['uploader']) . " <a class='torrentsmalldetails' href='user.php?id=" . $row['uploader'] . "'>" . $row['uploader'] . "</a> [hash: " . $torrent->hash_info() . "]</span> <font style='float:right'><a class='torrentsmalldetails' href='" . $row['link'] . "' title='Download .torrent File'><img src='skin/default/img/dl_torrent.png' width='12' height='12'></a> <a class='torrentsmalldetails' href='" . $torrent->magnet() . "' title='Download Via Magnet'><img src='skin/default/img/dl_magnet.png' width='12' height='12'></font></a>
+                            <a href='torrent.php?id=" . $row['id'] . "' class='torrentlinks'>" .$row['id']. "</a>
                         </td>
 						<td>
-						    <font class='torrentlinks' style='color: black'>" . $torrent->format($torrent->size()) . "</font>
-						</td>
-						
+                            <a class='torrentlinks' style='word-wrap: break-word;'>" .$row['text']. "</a>
+                        </td>	
+						<td>
+                            <a class='torrentlinks' href='user.php?id=" . $row['user'] . "'>" . $row['user'] . "</a>
+                        </td>	
+						<td>
+                            <a class='torrentlinks'>" .$row['time']. "</a>
+                        </td>
                     </tr>
 				
 
-";?>
+";
+?>
 <?php endwhile?>
 
 </table>
 </div>
 <?php
+if($totalpms < 1)
+{
+	echo "<br />There are no messages in your inbox.";
+}
 echo "<div class='paginationbar'>";
 $pagination->render();
 echo "</div>";
+}
+else
+{
+	echo "<br><center>You need to login to visit your inbox. Please <a href='login.php'>LOGIN</a> to access your inbox and personal messages.<br /><br /></font></center>";
+}
 ?>
 <br />
 <br />

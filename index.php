@@ -13,8 +13,10 @@
 <?php
 include('include/config.php');
 include('classes/Login.php');
+include('classes/Registration.php');
 
 $login = new Login();
+$functions = new Registration();
 
 if (isset($login)) {
     if ($login->errors) {
@@ -68,7 +70,7 @@ echo "
 if ($login->isUserLoggedIn() == true)
 {
 $unread = mysql_query("SELECT * FROM pms WHERE unread='yes' AND reciever='" . $_SESSION['user_name'] . "'") or die(mysql_error());
-echo "<br />Logged in as <b>" . $_SESSION['user_name'] . "</b> <a href='index.php?logout'>Logout</a> | <a href='inbox.php'>Inbox(<font style='color: maroon'><b>" . mysql_num_rows($unread) . "</b></font>)</a> | <a href='friends.php'>Friends</a> |";
+echo "<br />Logged in as <b>" . $functions->getUserLevel($_SESSION['user_name']) . $_SESSION['user_name'] . "</b> <a href='index.php?logout'>Logout</a> | <a href='inbox.php'>Inbox(<font style='color: maroon'><b>" . mysql_num_rows($unread) . "</b></font>)</a> | "; if($functions->getUserLevel('Administrator') == '10'){echo "<a href='#'>Admin Panel</a> | "; } echo "<a href='friends.php'>Friends</a> |";
 }
 else
 {

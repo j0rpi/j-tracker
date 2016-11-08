@@ -11,6 +11,9 @@
 <?php
 include('include/config.php');
 include('classes/torrent.php');
+include('classes/Registration.php');
+
+$functions = new Registration();
 ?>
 
 <head>
@@ -71,7 +74,7 @@ or die(mysql_error());
                             <a class='torrentlinks' href='torrent.php?id=" . $results['id'] . "'>".$results['cat']."</a>
                         </td>
                         <td>
-                            <a class='torrentlinks' href='torrent.php?id=" . $results['id'] . "'>".$results['title']."<br><span class='torrentsmalldetails'>Uploaded " . $results['date'] . ", by <a class='torrentsmalldetails' href='user.php?id=" . $results['uploader'] . "'>" . $results['uploader'] . "</a> [hash: " . $torrent->hash_info() . "]</span> <font style='float:right'><a class='torrentsmalldetails' href='" . $results['link'] . "' title='Download .torrent File'><img src='skin/default/img/dl_torrent.png' width='12' height='12'></a> <a class='torrentsmalldetails' href='" . $torrent->magnet() . "' title='Download Via Magnet'><img src='skin/default/img/dl_magnet.png' width='12' height='12'></font></a>
+                            <a class='torrentlinks' href='torrent.php?id=" . $results['id'] . "'>".$results['title']."<br><span class='torrentsmalldetails'>Uploaded " . $results['date'] . ", by " . $functions->getUserLevel($results['uploader']) . " <a class='torrentsmalldetails' href='user.php?id=" . $results['uploader'] . "'>" . $results['uploader'] . "</a> [hash: " . $torrent->hash_info() . "]</span> <font style='float:right'><a class='torrentsmalldetails' href='" . $results['link'] . "' title='Download .torrent File'><img src='skin/default/img/dl_torrent.png' width='12' height='12'></a> <a class='torrentsmalldetails' href='" . $torrent->magnet() . "' title='Download Via Magnet'><img src='skin/default/img/dl_magnet.png' width='12' height='12'></font></a>
                         </td>
                         <td>
                             <font class='torrentlinks' style='color: black'>" . $torrent->format($torrent->size()) . "</font>

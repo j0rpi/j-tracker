@@ -65,6 +65,50 @@ class Registration
 		}
     }
 	
+	public function getUserLevel($user)
+    {
+    $this->db_connection = new mysqli(dbhost, dbuser, dbpass, dbname);
+	$sql = "SELECT * FROM users WHERE user_name='" . $user . "'";
+	$sql2 = mysql_query("SELECT * FROM users WHERE user_name='" . $user . "'");
+	$query_get_level = $this->db_connection->query($sql);
+
+	if ($query_get_level) 
+	    {
+            while($level = mysql_fetch_array($sql2))
+			{
+				if($level['user_level'] == '0')
+				{
+					return null;
+				}
+				
+				if($level['user_level'] == 'bot')
+				{
+					return '<img alt="Moderator" src="skin/default/img/users/ghost.gif" style="vertical-align: middle;" /> ';
+				}
+				
+				if($level['user_level'] == '8')
+				{
+					return '<img alt="Moderator" src="skin/default/img/users/vip.png" style="vertical-align: middle;" /> ';
+				}
+				
+				if($level['user_level'] == '9')
+				{
+					return '<img alt="Moderator" src="skin/default/img/users/mod.png" style="vertical-align: middle;" /> ';
+				}
+				
+				if($level['user_level'] == '10')
+				{
+					return '<img alt="Administrator" src="skin/default/img/users/sysop.png" style="vertical-align: middle;" /> ';
+				}
+				
+			}
+        } 
+		else 
+		{
+            echo "<center>Error: Function <strong>getUserLevel()</strong> has failed. Please contact administrators.";
+        }
+	}
+	
 	public function updatePassword()
     {
     $this->db_connection = new mysqli(dbhost, dbuser, dbpass, dbname);
@@ -136,12 +180,12 @@ class Registration
 	public function sendPM()
     {
     $this->db_connection = new mysqli(dbhost, dbuser, dbpass, dbname);
-	$sql = "INSERT INTO pms (title, message, sender, reciever, date) VALUES ('" . $_POST['title']  . "', '" . mysql_real_escape_string($_POST['message']) . "', '" . $_POST['sender'] . "', '" . $_POST['reciever'] . "', '" . date('F j Y, H:i:s') . "')";
+	$sql = "INSERT INTO pms (title, message, sender, reciever, date, unread) VALUES ('" . $_POST['title']  . "', '" . mysql_real_escape_string($_POST['message']) . "', '" . $_POST['sender'] . "', '" . $_POST['reciever'] . "', '" . date('F j Y, H:i:s') . "', 'yes')";
 	$query_send_pm = $this->db_connection->query($sql);
 	
 	if ($query_send_pm) 
 	    {
-            echo "<font style='color: darkgreen'><center>Message sent successfully.</font></center><br />";
+            header('Location: inbox.php');
         } 
 		else 
 		{

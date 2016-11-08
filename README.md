@@ -10,11 +10,13 @@ J-Tracker does not rely on other sites and/or databases. It purely uses it's own
 - Authentication system (Login/Register)
 - Change password/avatar image
 - Ability to upload torrents
+- User levels (Default: SysOp, Moderator, VIP)
 - Comments on each torrent
 - PM system (send, recieve, read)
 - Friends system (friendlist, blocked users)
 - PGP encryption (optional)
 - Easy installer
+- Admin Control Panel
 
 # Installation
 1. Upload 'j-tracker' folder to your FTP
@@ -25,7 +27,6 @@ J-Tracker does not rely on other sites and/or databases. It purely uses it's own
 
 # Future features
 - Simple mini blog with comments
-- ACP (Admin Control Panel)
 - Ability to search by each category (Currently only searches through everything)
 
 # Is this script finished?
