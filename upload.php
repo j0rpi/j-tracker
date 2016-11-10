@@ -110,7 +110,7 @@ echo "<a href='login.php'>Login</a> |
 echo "
 <a href='upload.php'>Upload Torrent</a> |
 <a href='my.php'>UCP</a> |
-<a href='/blog/'>Blog</a> |
+<a href='blog'>Blog</a> |
 <a href='legal.php'>Legal</a> |
 <a href='stats.php'>Site Statistics</a> |
 <a href='about.php'>About J-Tracker</a>
