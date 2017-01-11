@@ -6,6 +6,8 @@ as a search index for torrents added by it's users from a database.
 J-Tracker does not rely on other sites and/or databases. It purely uses it's own, just like the original The Pirate Bay.
 
 # Features
+- Forums
+- Blog
 - Search engine
 - Authentication system (Login/Register)
 - Change password/avatar image
@@ -26,8 +28,8 @@ J-Tracker does not rely on other sites and/or databases. It purely uses it's own
 5. Done
 
 # Future features
-- Simple mini blog with comments
 - Ability to search by each category (Currently only searches through everything)
 
 # Is this script finished?
-Yes, or atleast in a 100% working state. There will be other additions, but at the moment it's fully usable. 
+No, far from it. It does work in it's current state. I wouldn't use it though, since all code for the time
+has been written in a hurry without any security meassures implemented. 
