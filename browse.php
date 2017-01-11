@@ -14,6 +14,7 @@ include('classes/torrent.php');
 include('classes/Registration.php');
 require('classes/paginator.php');
 
+
 // Limit Search Results Per Page
 $records_per_page = 15;
 
@@ -32,7 +33,7 @@ $pagination = new Zebra_Pagination();
 <body>
 <div class="topbar">
 <form action="search.php" id="search" method="get">
-<a href="index.php" class="a" style="float: left; border-bottom: 0px solid lol;"><img src="skin/default/img/logo.png" width="64" height="64" id="" alt="" class="topbar-logo"></a><br />
+<a href="index.php" class="a" style="float: left; border-bottom: 0px solid lol;"><img src="skin/default/img/logo.png" width="64" height="64" id="" alt="" class="topbar-logo"></a>
 <a href="index.php" title="Search Torrents">Search Torrents</a>&nbsp;&nbsp;|&nbsp;
 <a href="browse.php?p=0" title="Browse Torrents">Browse Torrents</a>&nbsp;&nbsp;|&nbsp;
 <a href="#" title="Recent Torrent">Recent Torrents</a>
@@ -51,7 +52,7 @@ if (!($result = @mysql_query($MySQL)))
 {
 
     // stop execution and display error message
-    die(mysql_error());
+    die("GAY");
 
 }
 
@@ -76,6 +77,12 @@ $pagination->records_per_page($records_per_page);
                         <td style=''>
                             Title
                         </td>
+						<!--<td style=''>
+							Seeders
+						</td>
+						<td style=''>
+							Leechers
+						</td>-->
 						<td width='80'>
 						    Size
 						</td>
@@ -99,11 +106,11 @@ echo "
 						<td>
 						    <font class='torrentlinks' style='color: black'>" . $torrent->format($torrent->size()) . "</font>
 						</td>
-						
                     </tr>
+					
 				
 
-";?>
+"; ?>
 <?php endwhile?>
 
 </table>

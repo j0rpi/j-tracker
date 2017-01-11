@@ -1,40 +1,64 @@
-<!--
-
- J-Tracker
- file: install/index.php
- purpose: easy installation script
-
--->
-
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Installer</title>
+	<link rel="stylesheet" type="text/css" href="../skin/default/style.css"/>
+</head>
+<body>
 <?php
 include('../include/config.php');
 include('../classes/Registration.php');
 $register = new Registration();
 
-if( defined("installed") )
+if( defined("installed") == "no" )
 {
 	die("J-Tracker is already istalled. Click <a href='../index.php'>here to return to main site.</a>");
 }
 else
 {
+echo '
+<div style="width: 711px; height: 40px; border: 1px solid #D5C7AD; background: #FFFEF7;">
+<h1 style="font-size: 12px; padding: 5px;">Make sure following libaries are installed before going any further</h1>
+</div>
+<div class="torrentpagebg" style="padding: 5px; width: 701px; height: 1040px;border-left: 1px solid #D5C7AD; border-right: 1px solid #D5C7AD; border-upper: 1px solid #D5C7AD; border-bottom: 1px solid #D5C7AD;">
+<div class="torrentpagebg" style="background: rgba(0,0,0, 0.1); padding: 5px; width: 300px; height: 145px; border: 1px solid #D5C7AD;"> '; 
+	
+		if(extension_loaded("zlib"))
+		{
+			echo "<strong>ZLIB:</strong> <strong style='color: green'>Yes</strong><br><i style='font-size: 10px'>Enables compression. j-tracker can run without this, but it will<br>
+										 fill disks with alot of data faster.</i><br><br>";
+		}
+		else
+		{
+			echo "<strong>ZLIB:</strong> <strong style='color: red'>No</strong><br><i style='font-size: 10px'>Enables compression. j-tracker can run without this, but it will<br>
+										 fill disks with alot of data faster.</i><br><br>";
+		}
+		if(extension_loaded("com_dotnet"))
+		{
+			echo "<strong>COM DOTNET:</strong> <strong style='color: green'>Yes</strong><br><i style='font-size: 10px'>Enables use of COM data used by Windows servers. Useless and un-needed for Linux machines.<br>
+											 j-tracker can safely run without this component. <br><br><strong>Note:</strong> Needed for LInfo stats module in the admin control panel.</i>";
+		}
+		else
+		{
+			echo "<strong>COM DOTNET:</strong> <strong style='color: red'>No</strong><br><i style='font-size: 10px'>Enables use of COM data used by Windows servers. Useless and un-needed for Linux machines.<br>
+											 j-tracker can safely run without this component.</i>";
+		}
+?>
+</div>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<?php
+
 
 echo "
 <style type='text/css'>
 
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#999;}
-.tg td{margin-left: 50px; text-align: left;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
-.tg th{margin-left: 50px; text-align: left;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
-.container {background: url('http://bibben.se/wp-content/uploads/2013/07/background.png'); width: 800px; height: 1000px; border-radius: 8px 8px 8px 8px; border: 1px solid black;}
+.tg  {background: rgba(0,0,0, 0.1); border-collapse:collapse;border-spacing:0;}
+.tg td{margin-left: 50px; text-align: left;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal; color:#000000 ;background: rgba(0,0,0, 0.1);}
+.tg th{margin-left: 50px; text-align: left;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;  color:#000000;background: rgba(0,0,0, 0.1);}
+.container {width: 800px; height: 1000px;}
 </style>
-<center>
-<div align='center' class='container'>
-<font style='font-size: 18px; font-family: Arial;'><b>J-Tracker</b></font><br>
-<font style='font-size: 12px; font-family: Arial;'>For best results, please edit config.php.example manually.
+<div class='container'>
 </font>
-<br>
-<br>
-<br>
 <br>
 <br>
 <font style='font-size: 16px; font-family: Arial;'><b>Database Settings</b></font>
@@ -77,7 +101,7 @@ echo "
     <td class='tg-031e'><input type='text' name='site_logo' id='site_logo' value='/img/logo.png'></td>
   </tr>
   <tr>
-    <td class='tg-031e'>Site Language (Specify Language Code - eg. 'en' for english, or 'sv' for swedish.</td>
+    <td class='tg-031e'>Site Language</td>
     <td class='tg-031e'><input type='text' name='lang' id='site_logo' value='en'></td>
   </tr>
 </table>
@@ -116,13 +140,10 @@ echo "
   </tr>
 </table>
 <br>
-<input type='submit' name='install' value='Install' />
-
-</center>
+<input style='float: right; margin-right: 125px;' type='submit' name='install' value='Install' />
 </div>
 </form>";
 }
-
 ?>
 <?php
 if (isset ($_POST['install']))
@@ -173,8 +194,8 @@ function config()
 	$config_content .= "\n";
 	$config_content .= "# User Settings\n";
 	$config_content .= "define('avatars_dir', '" . $_POST['avatar_path'] . "');\n";
-	$config_content .= "# Localization\n";
-    $config_content .= "define('lang', '" . $_POST['lang'] . "');\n";
+	$config_content .= "# Localization - NOT USED YET!\n";
+    $config_content .= "#define('lang', '" . $_POST['lang'] . "');\n";
 	$config_content .= "mysql_connect(dbhost, dbuser, dbpass) or die('Error connecting to database: '.mysql_error());";
 	$config_content .= "mysql_select_db(dbname) or die(mysql_error());";
 	$config_content .= "?>";
@@ -190,8 +211,17 @@ function createSysOp()
 		die("<b>Installation has failed!</b>\n\nCould not connect and populate the database with data.\nPlease check your configuration.");
 	}
 	
-$sql = "INSERT INTO users (user_name, user_password_hash, user_email, user_avatar, user_level) VALUES ('" . $_POST['user_name'] ."', '" . password_hash($_POST['user_password_repeat'], PASSWORD_DEFAULT) . "', '" . $_POST['user_email'] . "', 'http://we3cares.com/Images/User-64x64.jpg',  '10')";
-    if ($conn->query($sql) === TRUE) 
+	$sql = "INSERT INTO users (user_name, user_password_hash, user_email, user_avatar, user_level) VALUES ('" . $_POST['user_name'] ."', '" . password_hash($_POST['user_password_repeat'], PASSWORD_DEFAULT) . "', '" . $_POST['user_email'] . "', 'http://we3cares.com/Images/User-64x64.jpg',  '10')";
+    $sql2 = "INSERT INTO users (user_name, user_password_hash, user_email, user_avatar, user_level) VALUES ('System', '', '" . $_POST['user_email'] . "', 'http://we3cares.com/Images/User-64x64.jpg',  'system')";
+	if ($conn->query($sql) === TRUE) 
+	{
+       
+    } 
+    else 
+    {
+       echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+	if ($conn->query($sql2) === TRUE) 
 	{
        
     } 
@@ -207,4 +237,6 @@ function redirect()
     exit;  
 }
 ?>
-
+</div>
+</body>
+</html>

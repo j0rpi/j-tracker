@@ -6,7 +6,7 @@
 
 /* COMMON ATTRIBUTES FOR ALL THE LINKS
 ----------------------------------------------------------------------------------------------------------------------*/
-.Zebra_Pagination a                     { color: darkblue; border-bottom: 0px solid black; font-family: Helvetica; padding: 4px ; text-decoration: none; margin: 0 2px; display: block; float: left; }
+.Zebra_Pagination a                     { color: darkblue; border-bottom: 0px solid black; font-family: Verdana,Arial,Helvetica,sans-serif; padding: 2px ; text-decoration: none; margin: 0 2px; display: block; float: left; }
 .Zebra_Pagination a:hover               { color: #222; text-decoration: underline; }
 
 /* "NEXT PAGE" AND "PREVIOUS PAGE" LINKS
@@ -26,4 +26,4 @@
 
 /* THE "..." SEPARATOR
 ----------------------------------------------------------------------------------------------------------------------*/
-.Zebra_Pagination span                  { color: #666; margin-right: 2px; display: block; float: left; padding: 8px 4px }
+.Zebra_Pagination span                  { color: #666; margin-right: 2px; display: block; float: left; padding: 4px 4px }

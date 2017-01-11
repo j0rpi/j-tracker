@@ -54,7 +54,7 @@ or die("Database is currently AFK, it'll be back shortly.");
 				"<strong>" .$results['title']. "</strong><br><br><textarea style='border: none; width: 99%; height: 300px;     font-family: Verdana, Arial, Helvetica, sans-serif;'>" .
 				$results['text'] . 
 				"</textarea>
-                Written by: <a href='user.php?id='System'>System</a></div><br><br>";   
+                Written by: " . $register->getUserLevel('System') . " <a>System</a></div><br><br>";   
             }
 		
 if ($login->isUserLoggedIn() == true)
@@ -77,7 +77,7 @@ echo "<div class='commentpagebg'><font style='font-size: 24px; font-family: Helv
 	else
 	   {
 	    echo "<br>";
-		echo "<p align='left' class='comment-user'><font style='font-size: 16px; font-family: Helvetica; padding-top: 0px; padding-left: 10px; '>- No Comments For This Torrent -</font></p>";
+		echo "<p align='left' class='comment-user'><font style='text-align: center; font-size: 12px; font-family: Helvetica; padding-top: 0px; padding-left: 10px; '><strong>- No comment on this blog article. -</strong></font></p>";
 	   }
 	   echo "</div>";
 

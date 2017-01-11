@@ -6,9 +6,7 @@
 
 -->
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
 <form action="search.php" id="search" method="get">
 <?php
 include('include/config.php');
@@ -49,7 +47,7 @@ echo "
 <nav>
 <a href='browse.php?p=0'>Browse Torrents</a> |
 <a href='#'>Recent Torrents</a> |
-<a href='#'>Torrents Hall of Fame</a> 
+<a href='#'>Torrents Hall of Fame</a>
 </nav>
 <br>
   <input type='text' required='' class='search' name='query' width='900'><br>
@@ -62,18 +60,19 @@ echo "
             <label title='Porn' accesskey='t'><input name='porn' id='porn' type='checkbox'>Porn</label>
             <label title='Other' accesskey='y'><input name='other' id='other' type='checkbox'>Other</label>
   </p>
-  <input type='submit' width='600' value='Search For Torrents'><br>
+  <input type='submit' width='600' value='Search For Torrents'>
 </form>
 <br>
-<nav>";
+<nav><br>";
 
 if ($login->isUserLoggedIn() == true)
 {
 $unread = mysql_query("SELECT * FROM pms WHERE unread='yes' AND reciever='" . $_SESSION['user_name'] . "'") or die(mysql_error());
-echo "<br />Logged in as <b>" . $functions->getUserLevel($_SESSION['user_name']) . $_SESSION['user_name'] . "</b> <a href='index.php?logout'>Logout</a> | <a href='inbox.php'>Inbox(<font style='color: maroon'><b>" . mysql_num_rows($unread) . "</b></font>)</a> | "; if($functions->getUserLevel('Administrator') == '10'){echo "<a href='#'>Admin Panel</a> | "; } echo "<a href='friends.php'>Friends</a> |";
+echo "Logged in as <b>" . $functions->getUserLevel($_SESSION['user_name']) . $_SESSION['user_name'] . "</b><br> <a href='index.php?logout'>Logout</a> | <a href='inbox.php'>Inbox(<font style='color: maroon'><b>" . mysql_num_rows($unread) . "</b></font>)</a> | "; if($functions->getUserLevel($_SESSION['user_name']) == "10"){echo "<a href='#'>Admin Panel</a> | "; }  else{} echo "<a href='friends.php'>Friends</a> |";
 }
 else
 {
+	
 echo "<a href='login.php'>Login</a> |
       <a href='register.php'> Register</a> |";
       
@@ -86,10 +85,11 @@ echo "
 <a href='legal.php'>Legal</a> |
 <a href='stats.php'>Site Statistics</a> |
 <a href='about.php'>About J-Tracker</a>
+
 </nav>
 <br>
 <br>
-<span class='footertext'>Site Powered by <a href='http://www.github.com/j0rpi/j-tracker'>J-Tracker v0.5</a><br></span>
+<span class='footertext'>Site Powered by <a href='http://www.github.com/j0rpi/j-tracker'>J-Tracker v0.6 [2016-11-28]</a><br></span>
 <br>
 <br>
 <br>

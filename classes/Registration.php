@@ -83,26 +83,31 @@ class Registration
 				
 				if($level['user_level'] == 'bot')
 				{
-					return '<img alt="Moderator" src="skin/default/img/users/ghost.gif" style="vertical-align: middle;" /> ';
+					return '<img alt="Bot" src="skin/default/img/users/ghost.gif" width="12" height="12" /> ';
 				}
 				
 				if($level['user_level'] == '8')
 				{
-					return '<img alt="Moderator" src="skin/default/img/users/vip.png" style="vertical-align: middle;" /> ';
+					return '<img alt="VIP" src="skin/default/img/users/vip.png" width="12" height="12" /> ';
 				}
 				
 				if($level['user_level'] == '9')
 				{
-					return '<img alt="Moderator" src="skin/default/img/users/mod.png" style="vertical-align: middle;" /> ';
+					return '<img alt="Moderator" src="skin/default/img/users/mod.png" width="12" height="12" /> ';
 				}
 				
 				if($level['user_level'] == '10')
 				{
-					return '<img alt="Administrator" src="skin/default/img/users/sysop.png" style="vertical-align: middle;" /> ';
+					return '<img alt="Administrator" src="skin/default/img/users/sysop.png" width="12" height="12" /> ';
+				}
+				if($level['user_level'] == 'system')
+				{
+					return '<img alt="System" src="skin/default/img/users/system.png" width="12" height="12" /> ';
 				}
 				
 			}
         } 
+		
 		else 
 		{
             echo "<center>Error: Function <strong>getUserLevel()</strong> has failed. Please contact administrators.";

@@ -36,6 +36,8 @@ if (isset($login)) {
     <title><?php echo site_name . " - User Details"; ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="skin/default/style.css"/>
+	<link href="http://blazeworx.com/flags.css" rel="stylesheet">
+	<script src="http://blazeworx.com/jquery.flagstrap.min.js"></script>
 </head>
 <body>
 <div class='topbar'>
@@ -91,6 +93,8 @@ while($user_results = mysql_fetch_array($query))
 <br><br>
 <input type='submit' name='updatepassword' value='Update Password ...'>
 </form>
+
+
 <br>
 </div>
 </div>
@@ -140,3 +144,9 @@ echo "
 </body>
 </html>";
 ?>
+<script>
+$(document).ready(function () {
+    $('#select_country').attr('data-selected-country','CN');
+    $('#select_country').flagStrap();
+});
+</script>

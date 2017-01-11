@@ -47,10 +47,6 @@ class Registration
 		{
 			$this->addComment();
 		}
-		if (isset($_POST["addblogcomment"]))
-		{
-			$this->addBlogComment();
-		}
 		if (isset($_POST["install"]))
 		{
 			$this->registerSysOp();
@@ -87,27 +83,26 @@ class Registration
 				
 				if($level['user_level'] == 'bot')
 				{
-					return '<img alt="Moderator" src="skin/default/img/users/ghost.gif" style="vertical-align: middle;" /> ';
+					return '<img alt="Bot" src="skin/default/img/users/ghost.gif" width="12" height="12" /> ';
 				}
 				
 				if($level['user_level'] == '8')
 				{
-					return '<img alt="Moderator" src="skin/default/img/users/vip.png" style="vertical-align: middle;" /> ';
+					return '<img alt="VIP" src="skin/default/img/users/vip.png" width="12" height="12" /> ';
 				}
 				
 				if($level['user_level'] == '9')
 				{
-					return '<img alt="Moderator" src="skin/default/img/users/mod.png" style="vertical-align: middle;" /> ';
+					return '<img alt="Moderator" src="skin/default/img/users/mod.png" width="12" height="12" /> ';
 				}
 				
 				if($level['user_level'] == '10')
 				{
-					return '<img alt="Administrator" src="skin/default/img/users/sysop.png" style="vertical-align: middle;" /> ';
+					return '<img alt="Administrator" src="skin/default/img/users/sysop.png" width="12" height="12" /> ';
 				}
-				
-				if($level['user_level'] == 'Sys')
+				if($level['user_level'] == 'system')
 				{
-					return '<img alt="Administrator" src="skin/default/img/users/sysop.png" style="vertical-align: middle;" /> ';
+					return '<img alt="System" src="skin/default/img/users/system.png" width="12" height="12" /> ';
 				}
 				
 			}
@@ -174,21 +169,6 @@ class Registration
     {
     $this->db_connection = new mysqli(dbhost, dbuser, dbpass, dbname);
 	$sql = "INSERT INTO comments (id, text, user, time) VALUES ('" . $_POST['torrent_id']  . "', '" . mysql_real_escape_string($_POST['comment_text']) . "', '" . $_SESSION['user_name'] . "', '" . date('F j Y, H:i:s') . "')";
-	$query_add_comment = $this->db_connection->query($sql);
-	
-	if ($query_add_comment) 
-	    {
-            echo "<center>Comment added successfully!</center><br />";
-        } 
-		else 
-		{
-            echo "<center>An error occured while trying to add comment. Please try again.</center><br />";
-        }
-	}
-	public function addBlogComment()
-    {
-    $this->db_connection = new mysqli(dbhost, dbuser, dbpass, dbname);
-	$sql = "INSERT INTO blogcomments (id, text, user, time) VALUES ('" . mysql_real_escape_string($_POST['torrent_id'])  . "', '" . mysql_real_escape_string($_POST['comment_text']) . "', '" . $_SESSION['user_name'] . "', '" . date('F j Y, H:i:s') . "')";
 	$query_add_comment = $this->db_connection->query($sql);
 	
 	if ($query_add_comment) 
